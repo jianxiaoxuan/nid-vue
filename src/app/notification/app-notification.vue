@@ -1,9 +1,16 @@
 <template>
-  <div class="app-notification">AppNotification</div>
+  <div class="app-notification">
+    <AppNotificationMessage
+      v-for="message in messages"
+      :key="message.id"
+      :message="message"
+    />
+  </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import AppNotificationMessage from './app-notification-message.vue';
 
 export default defineComponent({
   name: 'AppNotification',
@@ -17,7 +24,24 @@ export default defineComponent({
    * 数据
    */
   data() {
-    return {};
+    return {
+      messages: [
+        {
+          id: 1,
+          content: '空山新雨后，天气晚来秋',
+          icon: 'cloud',
+        },
+        {
+          id: 2,
+          content: '树树皆秋色，山山唯落晖',
+          icon: 'landscape',
+        },
+        {
+          id: 3,
+          content: '人烟寒橘柚，秋色老梧桐',
+        },
+      ],
+    };
   },
 
   /**
@@ -40,7 +64,9 @@ export default defineComponent({
   /**
    * 使用组件
    */
-  components: {},
+  components: {
+    AppNotificationMessage,
+  },
 });
 </script>
 
