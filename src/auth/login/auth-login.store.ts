@@ -64,6 +64,7 @@ export const authLoginStoreModule: Module<AuthLoginStoreState, RootState> = {
         const response = await apiHttpClient.post('/login', data);
         commit('setLoginResponseData', response.data);
         commit('setLoading', false);
+        commit('auth/setToken', response.data.token, { root: true });
 
         return response;
       } catch (error) {

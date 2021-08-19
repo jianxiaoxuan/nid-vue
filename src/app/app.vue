@@ -5,13 +5,30 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex';
 import AppLayout from '@/app/layout/app-layout.vue';
+import { getStorage } from './app.service';
 
 export default {
   data() {
     return {
       layout: 'AppLayout',
     };
+  },
+
+  created() {
+    // 用户令牌
+    const token = getStorage('nid');
+
+    if (token) {
+      this.setToken(token);
+    }
+  },
+
+  methods: {
+    ...mapMutations({
+      setToken: 'auth/setToken',
+    }),
   },
 
   components: {

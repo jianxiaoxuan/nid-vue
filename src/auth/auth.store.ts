@@ -7,6 +7,7 @@ import {
 
 export interface AuthStoreState {
   login: AuthLoginStoreState;
+  token: string | null;
 }
 
 export const authStoreModele: Module<AuthStoreState, RootState> = {
@@ -18,17 +19,27 @@ export const authStoreModele: Module<AuthStoreState, RootState> = {
   /**
    * 数据
    */
-  state: {} as AuthStoreState,
+  state: {
+    token: null,
+  } as AuthStoreState,
 
   /**
    * 获取器
    */
-  getters: {},
+  getters: {
+    isLoggedIn(state) {
+      return state.token ? true : false;
+    },
+  },
 
   /**
    * 修改器
    */
-  mutations: {},
+  mutations: {
+    setToken(state, data) {
+      state.token = data;
+    },
+  },
 
   /**
    * 动作
