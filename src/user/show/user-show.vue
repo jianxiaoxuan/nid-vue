@@ -2,6 +2,7 @@
   <div class="user-show" v-if="user">
     <div class="user-show-header">
       <UserAvatar :user="user" size="large" />
+      <UserName :user="user" size="large" />
     </div>
   </div>
 </template>
@@ -10,6 +11,7 @@
 import { defineComponent } from 'vue';
 import { mapGetters, mapActions } from 'vuex';
 import UserAvatar from '@/user/components/user-avatar.vue';
+import UserName from '@/user/components/user-name.vue';
 
 export default defineComponent({
   name: 'UserShow',
@@ -58,6 +60,7 @@ export default defineComponent({
    */
   components: {
     UserAvatar,
+    UserName,
   },
 });
 </script>
