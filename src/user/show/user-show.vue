@@ -4,6 +4,7 @@
       <UserAvatar :user="user" size="large" />
       <UserName :user="user" size="large" />
     </div>
+    <UserShowMenu />
     <div class="user-show-body">
       <router-view></router-view>
     </div>
@@ -15,6 +16,7 @@ import { defineComponent } from 'vue';
 import { mapGetters, mapActions } from 'vuex';
 import UserAvatar from '@/user/components/user-avatar.vue';
 import UserName from '@/user/components/user-name.vue';
+import UserShowMenu from './components/user-show-menu.vue';
 
 export default defineComponent({
   name: 'UserShow',
@@ -64,6 +66,7 @@ export default defineComponent({
   components: {
     UserAvatar,
     UserName,
+    UserShowMenu,
   },
 });
 </script>
