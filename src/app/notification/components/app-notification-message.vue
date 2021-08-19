@@ -60,4 +60,6 @@ export default defineComponent({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+@import './styles/app-notification-message.css';
+</style>

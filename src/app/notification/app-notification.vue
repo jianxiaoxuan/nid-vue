@@ -10,7 +10,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import AppNotificationMessage from './app-notification-message.vue';
+import AppNotificationMessage from './components/app-notification-message.vue';
 
 export default defineComponent({
   name: 'AppNotification',
