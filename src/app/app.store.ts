@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 import { authStoreModele, AuthStoreState } from '../auth/auth.store';
 import { postStoreModule, PostStoreState } from '../post/post.store';
+import { userStoreModule, userStoreState } from '../user/user.store';
 import { localStorageStorePlugin } from './app.store.plugin';
 import { layoutStoreModule, LayoutStoreState } from './layout/layout.store';
 import {
@@ -14,6 +15,7 @@ export interface RootState {
   layout: LayoutStoreState;
   auth: AuthStoreState;
   notification: AppNotificationStoreState;
+  user: userStoreState;
 }
 
 /**
@@ -29,6 +31,7 @@ const store = createStore({
     layout: layoutStoreModule,
     auth: authStoreModele,
     notification: appNotificationStoreModule,
+    user: userStoreModule,
   },
 
   plugins: [localStorageStorePlugin],
