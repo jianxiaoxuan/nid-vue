@@ -2,22 +2,8 @@
   <div class="auth-login">
     <div class="form">
       <h1 class="header">用户登录</h1>
-      <div class="field">
-        <input
-          class="input text"
-          type="text"
-          placeholder="用户"
-          v-model="name"
-        />
-      </div>
-      <div class="field">
-        <input
-          class="input text"
-          type="password"
-          placeholder="密码"
-          v-model="password"
-        />
-      </div>
+      <TextField v-model="name" placeholder="用户" />
+      <TextField v-model="password" placeholder="密码" type="password" />
       <div class="field">
         <button class="button large" @click="onClickLoginButton">登录</button>
       </div>
@@ -27,6 +13,7 @@
 
 <script>
 import { defineComponent } from 'vue';
+import TextField from '@/app/components/text-field.vue';
 
 export default defineComponent({
   name: 'AuthLogin',
@@ -77,7 +64,9 @@ export default defineComponent({
   /**
    * 使用组件
    */
-  components: {},
+  components: {
+    TextField,
+  },
 });
 </script>
 
