@@ -1,8 +1,11 @@
 <template>
-  <div>UserAvatar</div>
+  <div :class="userAvatarClasses">
+    <img class="image" :src="userAvatarSource" />
+  </div>
 </template>
 
 <script>
+import { API_BASE_URL } from '@/app/app.config';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -11,7 +14,16 @@ export default defineComponent({
   /**
    * 属性
    */
-  props: {},
+  props: {
+    user: {
+      type: Object,
+    },
+
+    size: {
+      type: String,
+      default: 'small',
+    },
+  },
 
   /**
    * 数据
@@ -23,7 +35,23 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+    userAvatarClasses() {
+      return ['user-avatar', this.size];
+    },
+
+    userAvatarSource() {
+      let avatarSource;
+
+      if (this.user && this.user.avatar) {
+        avatarSource = `${API_BASE_URL}/users/${this.user.id}/avatar?size=${this.size}`;
+      } else {
+        avatarSource = '/icons/account-black-32px.svg';
+      }
+
+      return avatarSource;
+    },
+  },
 
   /**
    * 已创建
