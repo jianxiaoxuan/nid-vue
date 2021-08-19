@@ -1,17 +1,15 @@
 <template>
-  <div class="page-header">
-    <div class="container">
-      <AppToolbar />
-    </div>
+  <div class="app-toolbar-item search">
+    <AppIcon name="search" />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import AppToolbar from '@/app/toolbar/app-toolbar.vue';
+import AppIcon from '@/app/components/app-icon.vue';
 
 export default defineComponent({
-  name: 'PageHeader',
+  name: 'AppToolbarItemSearch',
 
   /**
    * 属性
@@ -46,7 +44,7 @@ export default defineComponent({
    * 使用组件
    */
   components: {
-    AppToolbar,
+    AppIcon,
   },
 });
 </script>
