@@ -18,3 +18,7 @@
   display: flex;
   align-items: flex-end;
 }
+
+.app-sidebar-item.brand {
+  margin-bottom: 64px;
+}
