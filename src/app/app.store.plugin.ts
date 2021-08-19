@@ -11,6 +11,9 @@ export const localStorageStorePlugin: Plugin<RootState> = store => {
       case 'layout/setTheme':
         setStorage('theme', mutation.payload);
         break;
+      case 'auth/login/setLoginResponseData':
+        setStorage('nid', mutation.payload.token);
+        break;
     }
   });
 };
