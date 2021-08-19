@@ -66,7 +66,7 @@ export const authLoginStoreModule: Module<AuthLoginStoreState, RootState> = {
         commit('setLoading', false);
         commit('auth/setToken', response.data.token, { root: true });
 
-        dispatch('configApiHttpClientAuthHeader', response.data.token, {
+        dispatch('auth/configApiHttpClientAuthHeader', response.data.token, {
           root: true,
         });
 
