@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="page dark">
     <page-header />
     <page-aside />
     <div class="page-main">

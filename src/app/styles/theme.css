@@ -1,0 +1,33 @@
+.page.light {
+  /* Background */
+  --primary-background: #fff;
+  --light-background: #f8f8f8;
+  --page-header-background: #fff;
+  --page-aside-background: #fff;
+
+  /* Text */
+  --primary-text-color: #000;
+  --secondary-text-color: #585858;
+  --light-text-color: #adadad;
+
+  /* Line */
+  --line-color: #e1e3e7;
+  --highlight-line-color: #000;
+}
+
+.page.dark {
+  /* Background */
+  --primary-background: #222;
+  --light-background: #1f1f1f;
+  --page-header-background: #222;
+  --page-aside-background: #2e2e2e;
+
+  /* Text */
+  --primary-text-color: #b1b1b1;
+  --secondary-text-color: #585858;
+  --light-text-color: #656565;
+
+  /* Line */
+  --line-color: #383838;
+  --highlight-line-color: #555;
+}
