@@ -44,13 +44,17 @@ export const appNotificationStoreModule: Module<
     addMessage(state, data) {
       state.messages = [data, ...state.messages];
     },
+
+    deleteMessage(state, data) {
+      state.messages = state.messages.filter(message => message.id !== data);
+    },
   },
 
   /**
    * 动作
    */
   actions: {
-    pushMessage({ commit }, data) {
+    pushMessage({ commit, dispatch }, data) {
       const id = Date.now();
 
       const message = {
@@ -59,6 +63,16 @@ export const appNotificationStoreModule: Module<
       };
 
       commit('addMessage', message);
+
+      dispatch('dismissMessage', message);
+    },
+
+    dismissMessage({ commit }, message) {
+      const timeout = message.duration ? message.duration : 3000;
+
+      setTimeout(() => {
+        commit('deleteMessage', message.id);
+      }, timeout);
     },
   },
 };
