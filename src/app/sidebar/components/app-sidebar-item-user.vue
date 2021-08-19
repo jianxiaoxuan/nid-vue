@@ -1,6 +1,6 @@
 <template>
   <div class="app-sidebar-item user">
-    <UserAvatar :user="{ id: 6, avatar: 1 }" />
+    <UserAvatar :user="{ id: 6, avatar: 1 }" link="login" />
   </div>
 </template>
 

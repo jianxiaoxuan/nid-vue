@@ -1,11 +1,15 @@
 <template>
   <div :class="userAvatarClasses">
-    <img class="image" :src="userAvatarSource" />
+    <router-link class="link" :to="userAvatarLinkTo" v-if="link">
+      <img class="image" :src="userAvatarSource" />
+    </router-link>
+    <img v-else class="image" :src="userAvatarSource" />
   </div>
 </template>
 
 <script>
 import { API_BASE_URL } from '@/app/app.config';
+import { mapGetters } from 'vuex';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -23,6 +27,10 @@ export default defineComponent({
       type: String,
       default: 'small',
     },
+
+    link: {
+      type: String,
+    },
   },
 
   /**
@@ -36,6 +44,10 @@ export default defineComponent({
    * 计算属性
    */
   computed: {
+    ...mapGetters({
+      isLoggedIn: 'auth/isLoggedIn',
+    }),
+
     userAvatarClasses() {
       return ['user-avatar', this.size];
     },
@@ -50,6 +62,18 @@ export default defineComponent({
       }
 
       return avatarSource;
+    },
+
+    userAvatarLinkTo() {
+      let linkTo;
+
+      if (this.link === 'login' && !this.isLoggedIn) {
+        linkTo = { name: 'login' };
+      } else {
+        linkTo = '/';
+      }
+
+      return linkTo;
     },
   },
 
