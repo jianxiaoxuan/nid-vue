@@ -6,7 +6,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import UserAvatar from '@/user/user-avatar.vue';
+import UserAvatar from '@/user/components/user-avatar.vue';
 
 export default defineComponent({
   name: 'AppSidebarItemUser',
