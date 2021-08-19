@@ -1,20 +1,21 @@
 <template>
-  <h3>
-    <router-link to="/">{{ name }}</router-link>
-  </h3>
-  <router-view></router-view>
+  <component :is="layout">
+    <router-view></router-view>
+  </component>
 </template>
 
 <script>
+import AppLayout from '@/app/layout/app-layout.vue';
+
 export default {
   data() {
     return {
-      name: '宁皓网',
+      layout: 'AppLayout',
     };
   },
 
-  created() {
-    console.log(this.$store.state);
+  components: {
+    AppLayout,
   },
 };
 </script>
