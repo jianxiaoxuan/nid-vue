@@ -4,6 +4,9 @@
       <UserAvatar :user="user" size="large" />
       <UserName :user="user" size="large" />
     </div>
+    <div class="user-show-body">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
