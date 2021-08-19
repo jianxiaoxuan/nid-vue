@@ -1,15 +1,15 @@
 <template>
-  <div class="page-aside">
-    <AppSidebar />
+  <div class="app-sidebar-item add">
+    <AppIcon name="add_a_photo" />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import AppSidebar from '@/app/sidebar/app-sidebar.vue';
+import AppIcon from '@/app/components/app-icon.vue';
 
 export default defineComponent({
-  name: 'PageAside',
+  name: 'AppSidebarItemAdd',
 
   /**
    * 属性
@@ -44,7 +44,7 @@ export default defineComponent({
    * 使用组件
    */
   components: {
-    AppSidebar,
+    AppIcon,
   },
 });
 </script>

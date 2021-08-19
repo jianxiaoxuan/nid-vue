@@ -1,15 +1,19 @@
 <template>
-  <div class="page-aside">
-    <AppSidebar />
+  <div class="app-sidebar">
+    <AppSidebarItemBrand />
+    <AppSidebarItemPopular />
+    <AppSidebarItemAdd />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import AppSidebar from '@/app/sidebar/app-sidebar.vue';
+import AppSidebarItemBrand from './components/app-sidebar-item-brand.vue';
+import AppSidebarItemPopular from './components/app-sidebar-item-popular.vue';
+import AppSidebarItemAdd from './components/app-sidebar-item-add.vue';
 
 export default defineComponent({
-  name: 'PageAside',
+  name: 'AppSidebar',
 
   /**
    * 属性
@@ -44,7 +48,9 @@ export default defineComponent({
    * 使用组件
    */
   components: {
-    AppSidebar,
+    AppSidebarItemBrand,
+    AppSidebarItemPopular,
+    AppSidebarItemAdd,
   },
 });
 </script>
