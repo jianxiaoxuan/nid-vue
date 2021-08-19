@@ -3,6 +3,7 @@
     <AppSidebarItemBrand />
     <AppSidebarItemPopular />
     <AppSidebarItemAdd />
+    <AppSidebarItemTheme />
   </div>
 </template>
 
@@ -11,6 +12,7 @@ import { defineComponent } from 'vue';
 import AppSidebarItemBrand from './components/app-sidebar-item-brand.vue';
 import AppSidebarItemPopular from './components/app-sidebar-item-popular.vue';
 import AppSidebarItemAdd from './components/app-sidebar-item-add.vue';
+import AppSidebarItemTheme from './components/app-sidebar-item-theme.vue';
 
 export default defineComponent({
   name: 'AppSidebar',
@@ -51,6 +53,7 @@ export default defineComponent({
     AppSidebarItemBrand,
     AppSidebarItemPopular,
     AppSidebarItemAdd,
+    AppSidebarItemTheme,
   },
 });
 </script>
