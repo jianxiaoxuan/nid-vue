@@ -1,6 +1,6 @@
 <template>
   <div class="app-sidebar-item brand">
-    <router-link to="/">
+    <router-link to="/" class="link">
       <AppLogo />
     </router-link>
   </div>
