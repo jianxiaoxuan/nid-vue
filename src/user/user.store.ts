@@ -1,11 +1,13 @@
 import { Module } from 'vuex';
 import { RootState } from '@/app/app.store';
 import {
+  User,
   userShowStoreModule,
   UserShowStoreState,
 } from './show/user-show.store';
 
 export interface userStoreState {
+  currentUser: User | null;
   show: UserShowStoreState;
 }
 
@@ -18,22 +20,46 @@ export const userStoreModule: Module<userStoreState, RootState> = {
   /**
    * 数据
    */
-  state: {} as userStoreState,
+  state: {
+    currentUser: null,
+  } as userStoreState,
 
   /**
    * 获取器
    */
-  getters: {},
+  getters: {
+    currentUser(state) {
+      return state.currentUser;
+    },
+  },
 
   /**
    * 修改器
    */
-  mutations: {},
+  mutations: {
+    setCurrentUser(state, data) {
+      state.currentUser = data;
+    },
+  },
 
   /**
    * 动作
    */
-  actions: {},
+  actions: {
+    async getCurrentUser({ commit, dispatch }, userId) {
+      try {
+        const response = await dispatch('user/show/getUserById', userId, {
+          root: true,
+        });
+
+        commit('setCurrentUser', response.data);
+
+        return response;
+      } catch (error) {
+        throw error.response;
+      }
+    },
+  },
 
   /**
    * 模块
