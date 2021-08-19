@@ -49,7 +49,11 @@ export default defineComponent({
     }),
 
     userAvatarClasses() {
-      return ['user-avatar', this.size];
+      return [
+        'user-avatar',
+        this.size,
+        { fade: !this.isLoggedIn && !this.user },
+      ];
     },
 
     userAvatarSource() {
