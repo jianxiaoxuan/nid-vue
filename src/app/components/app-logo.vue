@@ -4,6 +4,7 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { mapGetters } from 'vuex';
 
 export default defineComponent({
   name: 'AppLogo',
@@ -24,7 +25,6 @@ export default defineComponent({
 
     color: {
       type: String,
-      default: '#000',
     },
   },
 
@@ -39,12 +39,24 @@ export default defineComponent({
    * 计算属性
    */
   computed: {
+    ...mapGetters({
+      theme: 'layout/theme',
+    }),
+
     appLogoClasses() {
       return ['app-logo', this.name];
     },
 
     appLogoStyles() {
-      return { fontSize: this.size + 'px', color: this.color };
+      let color;
+
+      if (this.color) {
+        color = this.color;
+      } else {
+        color = this.theme === 'dark' ? '#585858' : '#000';
+      }
+
+      return { fontSize: this.size + 'px', color };
     },
   },
 
