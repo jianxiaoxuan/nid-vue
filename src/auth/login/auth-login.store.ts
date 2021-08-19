@@ -70,6 +70,8 @@ export const authLoginStoreModule: Module<AuthLoginStoreState, RootState> = {
           root: true,
         });
 
+        dispatch('user/getCurrentUser', response.data.id, { root: true });
+
         return response;
       } catch (error) {
         commit('setLoading', false);

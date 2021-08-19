@@ -6,12 +6,12 @@ import {
   UserShowStoreState,
 } from './show/user-show.store';
 
-export interface userStoreState {
+export interface UserStoreState {
   currentUser: User | null;
   show: UserShowStoreState;
 }
 
-export const userStoreModule: Module<userStoreState, RootState> = {
+export const userStoreModule: Module<UserStoreState, RootState> = {
   /**
    * 命名空间
    */
@@ -22,7 +22,7 @@ export const userStoreModule: Module<userStoreState, RootState> = {
    */
   state: {
     currentUser: null,
-  } as userStoreState,
+  } as UserStoreState,
 
   /**
    * 获取器

@@ -1,7 +1,7 @@
 import { createStore } from 'vuex';
 import { authStoreModele, AuthStoreState } from '../auth/auth.store';
 import { postStoreModule, PostStoreState } from '../post/post.store';
-import { userStoreModule, userStoreState } from '../user/user.store';
+import { userStoreModule, UserStoreState } from '../user/user.store';
 import { localStorageStorePlugin } from './app.store.plugin';
 import { layoutStoreModule, LayoutStoreState } from './layout/layout.store';
 import {
@@ -15,7 +15,7 @@ export interface RootState {
   layout: LayoutStoreState;
   auth: AuthStoreState;
   notification: AppNotificationStoreState;
-  user: userStoreState;
+  user: UserStoreState;
 }
 
 /**
