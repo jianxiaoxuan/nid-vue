@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapMutations, mapActions } from 'vuex';
 import AppLayout from '@/app/layout/app-layout.vue';
 import { getStorage } from './app.service';
 
@@ -22,12 +22,17 @@ export default {
 
     if (token) {
       this.setToken(token);
+      this.configApiHttpClientAuthHeader(token);
     }
   },
 
   methods: {
     ...mapMutations({
       setToken: 'auth/setToken',
+    }),
+
+    ...mapActions({
+      configApiHttpClientAuthHeader: 'auth/configApiHttpClientAuthHeader',
     }),
   },
 

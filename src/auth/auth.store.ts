@@ -4,6 +4,7 @@ import {
   authLoginStoreModule,
   AuthLoginStoreState,
 } from './login/auth-login.store';
+import { apiHttpClient } from '../app/app.service';
 
 export interface AuthStoreState {
   login: AuthLoginStoreState;
@@ -44,7 +45,11 @@ export const authStoreModele: Module<AuthStoreState, RootState> = {
   /**
    * 动作
    */
-  actions: {},
+  actions: {
+    configApiHttpClientAuthHeader(_, data) {
+      apiHttpClient.defaults.headers.common['Authorization'] = `Bearer ${data}`;
+    },
+  },
 
   /**
    * 模块
