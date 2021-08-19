@@ -1,10 +1,12 @@
 <template>
   <div class="app-notification">
-    <AppNotificationMessage
-      v-for="message in messages"
-      :key="message.id"
-      :message="message"
-    />
+    <transition-group name="app-notification-message">
+      <AppNotificationMessage
+        v-for="message in messages"
+        :key="message.id"
+        :message="message"
+      />
+    </transition-group>
   </div>
 </template>
 

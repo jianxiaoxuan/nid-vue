@@ -23,3 +23,21 @@
 .app-notification-message > .icon {
   margin-right: 8px;
 }
+
+/* 过渡与动画 */
+.app-notification-message-enter-active {
+  transform: translateX(330px);
+  transition: 0.3s;
+}
+
+.app-notification-message-enter-to {
+  transform: translateX(0);
+}
+
+.app-notification-message-leave-active {
+  transition: 0.3s;
+}
+
+.app-notification-message-leave-to {
+  transform: translateX(330px);
+}
