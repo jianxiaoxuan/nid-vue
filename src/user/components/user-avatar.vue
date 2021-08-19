@@ -73,6 +73,11 @@ export default defineComponent({
 
       if (this.link === 'login' && !this.isLoggedIn) {
         linkTo = { name: 'login' };
+      } else if (this.user) {
+        linkTo = {
+          name: 'userShow',
+          params: { userId: this.user.id },
+        };
       } else {
         linkTo = '/';
       }
