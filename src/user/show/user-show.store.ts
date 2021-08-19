@@ -35,7 +35,7 @@ export const userShowStoreModule: Module<UserShowStoreState, RootState> = {
       return state.loading;
     },
 
-    responseData(state) {
+    user(state) {
       return state.user;
     },
   },
