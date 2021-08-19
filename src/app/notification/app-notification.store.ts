@@ -31,15 +31,34 @@ export const appNotificationStoreModule: Module<
   /**
    * 获取器
    */
-  getters: {},
+  getters: {
+    messages(state) {
+      return state.messages;
+    },
+  },
 
   /**
    * 修改器
    */
-  mutations: {},
+  mutations: {
+    addMessage(state, data) {
+      state.messages = [data, ...state.messages];
+    },
+  },
 
   /**
    * 动作
    */
-  actions: {},
+  actions: {
+    pushMessage({ commit }, data) {
+      const id = Date.now();
+
+      const message = {
+        id,
+        ...data,
+      };
+
+      commit('addMessage', message);
+    },
+  },
 };

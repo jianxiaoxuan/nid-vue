@@ -10,6 +10,7 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { mapGetters } from 'vuex';
 import AppNotificationMessage from './components/app-notification-message.vue';
 
 export default defineComponent({
@@ -24,30 +25,17 @@ export default defineComponent({
    * 数据
    */
   data() {
-    return {
-      messages: [
-        {
-          id: 1,
-          content: '空山新雨后，天气晚来秋',
-          icon: 'cloud',
-        },
-        {
-          id: 2,
-          content: '树树皆秋色，山山唯落晖',
-          icon: 'landscape',
-        },
-        {
-          id: 3,
-          content: '人烟寒橘柚，秋色老梧桐',
-        },
-      ],
-    };
+    return {};
   },
 
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+    ...mapGetters({
+      messages: 'notification/messages',
+    }),
+  },
 
   /**
    * 已创建
