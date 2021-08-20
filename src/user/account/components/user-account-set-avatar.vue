@@ -3,6 +3,13 @@
     <div class="form">
       <h2 class="header">设置头像</h2>
       <ButtonField text="提交" size="large" @click="onClickSubmitButton" />
+      <FileField
+        text="选择文件"
+        size="large"
+        name="avatar"
+        fileType="image/*"
+        @change="onChangeAvatarFileField"
+      />
     </div>
   </div>
 </template>
@@ -10,6 +17,7 @@
 <script>
 import { defineComponent } from 'vue';
 import ButtonField from '@/app/components/button-field.vue';
+import FileField from '@/app/components/file-field.vue';
 
 export default defineComponent({
   name: 'UserAccountSetAvatar',
@@ -45,6 +53,10 @@ export default defineComponent({
     onClickSubmitButton() {
       console.log('设置头像');
     },
+
+    onChangeAvatarFileField(files) {
+      console.log(files);
+    },
   },
 
   /**
@@ -52,6 +64,7 @@ export default defineComponent({
    */
   components: {
     ButtonField,
+    FileField,
   },
 });
 </script>
