@@ -4,8 +4,19 @@
   padding: 8px 24px;
   background: var(--primary-button-background);
   border: 2px solid var(--outline-button-color);
+  cursor: pointer;
+  display: inline-block;
+}
+
+.button:active {
+  opacity: 0.8;
 }
 
 .button.large {
   padding: 14px 40px;
+}
+
+.button.outline {
+  background: none;
+  color: var(--primary-text-color);
 }

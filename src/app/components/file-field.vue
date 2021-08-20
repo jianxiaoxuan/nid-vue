@@ -6,7 +6,7 @@
       name="name"
       :id="name"
       :accept="fileType"
-      class="inpu file hide"
+      class="input file hide"
       @change="$emit('change', $event.target.files)"
     />
   </div>

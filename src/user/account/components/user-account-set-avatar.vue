@@ -2,14 +2,16 @@
   <div class="user-account-set-avatar">
     <div class="form">
       <h2 class="header">设置头像</h2>
-      <ButtonField text="提交" size="large" @click="onClickSubmitButton" />
-      <FileField
-        text="选择文件"
-        size="large"
-        name="avatar"
-        fileType="image/*"
-        @change="onChangeAvatarFileField"
-      />
+      <div class="fields">
+        <FileField
+          text="选择文件"
+          size="large"
+          name="avatar"
+          fileType="image/*"
+          @change="onChangeAvatarFileField"
+        />
+        <ButtonField text="提交" size="large" @click="onClickSubmitButton" />
+      </div>
     </div>
   </div>
 </template>
