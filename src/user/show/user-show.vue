@@ -4,7 +4,7 @@
       <UserAvatar :user="user" size="large" />
       <UserName :user="user" size="large" />
     </div>
-    <UserShowMenu />
+    <UserShowMenu :user="user" />
     <div class="user-show-body">
       <router-view></router-view>
     </div>
