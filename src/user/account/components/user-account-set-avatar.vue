@@ -23,7 +23,7 @@
 
 <script>
 import { defineComponent } from 'vue';
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters, mapMutations } from 'vuex';
 import ButtonField from '@/app/components/button-field.vue';
 import FileField from '@/app/components/file-field.vue';
 
@@ -40,7 +40,6 @@ export default defineComponent({
    */
   data() {
     return {
-      avatarPreviewImage: '',
       avatarFile: null,
     };
   },
@@ -48,7 +47,11 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+    ...mapGetters({
+      avatarPreviewImage: 'user/account/avatarPreviewImage',
+    }),
+  },
 
   /**
    * 已创建
@@ -61,6 +64,10 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
+    ...mapMutations({
+      setAvatarPreviewImage: 'user/account/setAvatarPreviewImage',
+    }),
+
     ...mapActions({
       createAvatar: 'user/account/createAvatar',
       pushManager: 'notification/pushMessage',
@@ -89,7 +96,7 @@ export default defineComponent({
       fileReader.readAsDataURL(file);
 
       fileReader.onload = event => {
-        this.avatarPreviewImage = event.target.result;
+        this.setAvatarPreviewImage(event.target.result);
       };
     },
   },

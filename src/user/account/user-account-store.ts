@@ -4,6 +4,7 @@ import { apiHttpClient } from '@/app/app.service';
 
 export interface UserAccountStoreState {
   loading: boolean;
+  avatarPreviewImage: string;
 }
 
 export const userAccountStoreModule: Module<
@@ -20,6 +21,7 @@ export const userAccountStoreModule: Module<
    */
   state: {
     loading: false,
+    avatarPreviewImage: '',
   } as UserAccountStoreState,
 
   /**
@@ -29,6 +31,10 @@ export const userAccountStoreModule: Module<
     loading(state) {
       return state.loading;
     },
+
+    avatarPreviewImage(state) {
+      return state.avatarPreviewImage;
+    },
   },
 
   /**
@@ -37,6 +43,10 @@ export const userAccountStoreModule: Module<
   mutations: {
     setLoading(state, data) {
       state.loading = data;
+    },
+
+    setAvatarPreviewImage(state, data) {
+      state.avatarPreviewImage = data;
     },
   },
 
