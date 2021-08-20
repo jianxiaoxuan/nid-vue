@@ -70,5 +70,22 @@ export const userAccountStoreModule: Module<
         throw error.response;
       }
     },
+
+    async updateUserAccount({ commit, dispatch }, data) {
+      commit('setLoading', true);
+
+      try {
+        const response = await apiHttpClient.patch('/users', data.body);
+        commit('setLoading', false);
+
+        dispatch('user/getCurrentUser', data.userId, { root: true });
+
+        return response;
+      } catch (error) {
+        commit('setLoading', false);
+
+        throw error.response;
+      }
+    },
   },
 };
