@@ -23,6 +23,7 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { mapActions } from 'vuex';
 import ButtonField from '@/app/components/button-field.vue';
 import FileField from '@/app/components/file-field.vue';
 
@@ -40,6 +41,7 @@ export default defineComponent({
   data() {
     return {
       avatarPreviewImage: '',
+      avatarFile: null,
     };
   },
 
@@ -59,12 +61,24 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
-    onClickSubmitButton() {
-      console.log('设置头像');
+    ...mapActions({
+      createAvatar: 'user/account/createAvatar',
+      pushManager: 'notification/pushMessage',
+    }),
+
+    async onClickSubmitButton() {
+      try {
+        await this.createAvatar(this.avatarFile);
+
+        this.pushManager({ content: '成功设置了头像' });
+      } catch (error) {
+        this.pushManager({ content: '设置头像出问题了！' });
+      }
     },
 
     onChangeAvatarFileField(files) {
       if (files.length) {
+        this.avatarFile = files[0];
         this.createAvatarPreviewImage(files[0]);
       }
     },

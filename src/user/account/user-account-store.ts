@@ -1,5 +1,6 @@
 import { Module } from 'vuex';
 import { RootState } from '@/app/app.store';
+import { apiHttpClient } from '@/app/app.service';
 
 export interface UserAccountStoreState {
   loading: boolean;
@@ -42,5 +43,22 @@ export const userAccountStoreModule: Module<
   /**
    * 动作
    */
-  actions: {},
+  actions: {
+    async createAvatar({ commit }, file) {
+      commit('setLoading', true);
+
+      const formData = new FormData();
+      formData.append('avatar', file);
+
+      try {
+        const response = await apiHttpClient.post('/avatar', formData);
+        commit('setLoading', false);
+
+        return response;
+      } catch (error) {
+        commit('setLoading', false);
+        throw error.response;
+      }
+    },
+  },
 };
