@@ -1,6 +1,6 @@
 <template>
   <div class="field">
-    <button :class="['button', size]" @click="$emit('click')">
+    <button :class="['button', size, type]" @click="$emit('click')">
       {{ text }}
     </button>
   </div>
@@ -21,6 +21,10 @@ export default defineComponent({
     },
 
     size: {
+      type: String,
+    },
+
+    type: {
       type: String,
     },
   },
