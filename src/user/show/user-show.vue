@@ -45,6 +45,15 @@ export default defineComponent({
   },
 
   /**
+   * 监视
+   */
+  watch: {
+    userId() {
+      this.getUserById(this.userId);
+    },
+  },
+
+  /**
    * 已创建
    */
   created() {
