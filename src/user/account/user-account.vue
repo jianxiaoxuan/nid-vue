@@ -1,9 +1,12 @@
 <template>
-  <div class="user-account">UserAccount</div>
+  <div class="user-account">
+    <UserAccountSetAvatar />
+  </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import UserAccountSetAvatar from './components/user-account-set-avatar.vue';
 
 export default defineComponent({
   name: 'UserAccount',
@@ -47,7 +50,9 @@ export default defineComponent({
   /**
    * 使用组件
    */
-  components: {},
+  components: {
+    UserAccountSetAvatar,
+  },
 });
 </script>
 
