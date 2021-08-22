@@ -39,3 +39,23 @@
 .post-list-layout-icon.flow-minimal:before {
   content: '\e902';
 }
+
+.post-list-layout-icon {
+  font-size: 24px;
+  margin-left: 4px;
+  cursor: pointer;
+}
+
+.post-list-layout-icon.light {
+  color: #000;
+  opacity: 0.15;
+}
+
+.post-list-layout-icon.dark {
+  color: #585858;
+  opacity: 0.3;
+}
+
+.post-list-layout-icon.active {
+  opacity: 1;
+}

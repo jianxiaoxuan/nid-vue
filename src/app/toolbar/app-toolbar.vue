@@ -1,5 +1,8 @@
 <template>
   <div class="app-toolbar">
+    <div class="app-toolbar layout">
+      <PostListLayoutIconSwitcher />
+    </div>
     <AppToolbarItemSearch />
   </div>
 </template>
@@ -7,6 +10,7 @@
 <script>
 import { defineComponent } from 'vue';
 import AppToolbarItemSearch from './components/app-toolbar-item-search.vue';
+import PostListLayoutIconSwitcher from '@/post/index/components/post-list-layout-switcher.vue';
 
 export default defineComponent({
   name: 'AppToolbar',
@@ -45,6 +49,7 @@ export default defineComponent({
    */
   components: {
     AppToolbarItemSearch,
+    PostListLayoutIconSwitcher,
   },
 });
 </script>
