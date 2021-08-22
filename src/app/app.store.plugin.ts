@@ -20,6 +20,9 @@ export const localStorageStorePlugin: Plugin<RootState> = store => {
           setStorage('uid', mutation.payload.id);
         }
         break;
+      case 'post/index/setLayout':
+        setStorage('post-list-layout', mutation.payload);
+        break;
     }
   });
 };

@@ -5,14 +5,23 @@
 </template>
 
 <script>
+import { getStorage } from '@/app/app.service';
 import { defineComponent } from 'vue';
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 import PostListItem from './post-list-item';
 
 export default defineComponent({
   async created() {
     await this.getPosts();
-    console.log(this.posts);
+
+    // 内容列表布局
+    const layout = getStorage('post-list-layout');
+
+    if (layout) {
+      this.setLayout(layout);
+    } else {
+      this.setLayout('flow');
+    }
   },
 
   computed: {
@@ -30,6 +39,10 @@ export default defineComponent({
   methods: {
     ...mapActions({
       getPosts: 'post/index/getPosts',
+    }),
+
+    ...mapMutations({
+      setLayout: 'post/index/setLayout',
     }),
   },
 
