@@ -1,12 +1,14 @@
 <template>
   <div :class="postListItemClasses">
     <PostListItemMedia :item="item" />
+    <PostListItemContent :item="item" />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
 import PostListItemMedia from './post-list-item-media.vue';
+import PostListItemContent from './post-list-item-content.vue';
 
 export default defineComponent({
   props: {
@@ -21,6 +23,7 @@ export default defineComponent({
 
   components: {
     PostListItemMedia,
+    PostListItemContent,
   },
 });
 </script>
