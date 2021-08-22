@@ -1,6 +1,7 @@
 <template>
-  <div v-if="loading">加载中...</div>
-  <PostListItem v-for="post in posts" :item="post" :key="post.id" />
+  <div class="post-list">
+    <PostListItem v-for="post in posts" :item="post" :key="post.id" />
+  </div>
 </template>
 
 <script>
@@ -32,3 +33,7 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+@import './styles/post-list.css';
+</style>
