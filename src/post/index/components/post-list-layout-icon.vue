@@ -31,10 +31,16 @@ export default defineComponent({
   computed: {
     ...mapGetters({
       theme: 'layout/theme',
+      layout: 'post/index/layout',
     }),
 
     postListLayoutIconClasses() {
-      return ['post-list-layout-icon', this.name, this.theme];
+      return [
+        'post-list-layout-icon',
+        this.name,
+        this.theme,
+        { active: this.isActive(this.name) },
+      ];
     },
   },
 
@@ -53,7 +59,11 @@ export default defineComponent({
   /**
    * 组件方法
    */
-  methods: {},
+  methods: {
+    isActive(name) {
+      return this.layout === name;
+    },
+  },
 
   /**
    * 使用组件
