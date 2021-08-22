@@ -6,7 +6,7 @@
       @click="onClickUserAvatar"
     />
     <transition name="user-menu">
-      <UserMenu v-if="showUserMenu" />
+      <UserMenu v-if="showUserMenu" @close="showUserMenu = false" />
     </transition>
   </div>
 </template>
