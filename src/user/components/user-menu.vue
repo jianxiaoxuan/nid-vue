@@ -1,12 +1,17 @@
 <template>
   <div class="user-menu">
     <CloseButton @click="$emit('close')" />
+    <div class="user-menu-header">
+      <UserName :user="currentUser" />
+    </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import { mapGetters } from 'vuex';
 import CloseButton from '@/app/components/close-button.vue';
+import UserName from './user-name.vue';
 
 export default defineComponent({
   name: 'UserMenu',
@@ -31,7 +36,11 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+    ...mapGetters({
+      currentUser: 'user/currentUser',
+    }),
+  },
 
   /**
    * 已创建
@@ -67,6 +76,7 @@ export default defineComponent({
    */
   components: {
     CloseButton,
+    UserName,
   },
 });
 </script>

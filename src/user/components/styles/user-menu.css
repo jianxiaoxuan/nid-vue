@@ -32,3 +32,20 @@
   transform: translateX(-24px);
   opacity: 0;
 }
+
+.user-menu-header {
+  font-weight: bold;
+  padding-top: 16px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--line-color);
+}
+
+.user-menu-header .link {
+  display: block;
+  color: var(--secondary-text-color) !important;
+  transition: 0.1s;
+}
+
+.user-menu-header .link:hover {
+  color: var(--primary-text-color) !important;
+}
