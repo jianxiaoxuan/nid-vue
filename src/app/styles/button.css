@@ -20,3 +20,9 @@
   background: none;
   color: var(--primary-text-color);
 }
+
+.button.basic {
+  background: none;
+  border: none;
+  padding: 0;
+}
