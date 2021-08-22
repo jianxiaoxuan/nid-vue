@@ -21,14 +21,16 @@
       </div>
     </div>
     <div class="user-menu-footer">
-      <button class="button block">退出登录</button>
+      <button class="button block" @click="onClickLogoutButton">
+        退出登录
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 import CloseButton from '@/app/components/close-button.vue';
 import UserName from './user-name.vue';
 
@@ -113,10 +115,19 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
+    ...mapActions({
+      logout: 'auth/logout',
+    }),
+
     onKeyUpWindow(event) {
       if (event.key === 'Escape') {
         this.$emit('close');
       }
+    },
+
+    onClickLogoutButton() {
+      this.$emit('close');
+      this.logout();
     },
   },
 

@@ -12,8 +12,13 @@ export const localStorageStorePlugin: Plugin<RootState> = store => {
         setStorage('theme', mutation.payload);
         break;
       case 'auth/login/setLoginResponseData':
-        setStorage('nid', mutation.payload.token);
-        setStorage('uid', mutation.payload.id);
+        if (!mutation.payload) {
+          setStorage('nid', '');
+          setStorage('uid', '');
+        } else {
+          setStorage('nid', mutation.payload.token);
+          setStorage('uid', mutation.payload.id);
+        }
         break;
     }
   });
