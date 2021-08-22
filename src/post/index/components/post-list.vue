@@ -1,5 +1,5 @@
 <template>
-  <div class="post-list">
+  <div :class="postListClasses">
     <PostListItem v-for="post in posts" :item="post" :key="post.id" />
   </div>
 </template>
@@ -19,7 +19,12 @@ export default defineComponent({
     ...mapGetters({
       loading: 'post/index/loading',
       posts: 'post/index/posts',
+      layout: 'post/index/layout',
     }),
+
+    postListClasses() {
+      return ['post-list', this.layout];
+    },
   },
 
   methods: {

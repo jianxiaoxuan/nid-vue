@@ -11,6 +11,7 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { mapMutations } from 'vuex';
 import PostListLayoutIcon from './post-list-layout-icon.vue';
 
 export default defineComponent({
@@ -46,8 +47,12 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
+    ...mapMutations({
+      setLayout: 'post/index/setLayout',
+    }),
+
     onClickPostListLayoutIcon(icon) {
-      console.log(icon);
+      this.setLayout(icon);
     },
   },
 
