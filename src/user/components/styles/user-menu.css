@@ -1,0 +1,14 @@
+.user-menu {
+  position: absolute;
+  top: 0;
+  right: -270px;
+  box-sizing: border-box;
+  background: var(--primary-background);
+  font-size: 16px;
+  font-weight: 300;
+  min-width: 220px;
+  max-width: 220px;
+  padding: 16px;
+  border-radius: 5px;
+  box-shadow: 10px 30px 30px rgba(0, 0, 0, 0.1);
+}

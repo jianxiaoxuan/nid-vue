@@ -5,6 +5,7 @@
       :link="userAvatarLink"
       @click="onClickUserAvatar"
     />
+    <UserMenu v-if="showUserMenu" />
   </div>
 </template>
 
@@ -12,6 +13,7 @@
 import { defineComponent } from 'vue';
 import { mapGetters } from 'vuex';
 import UserAvatar from '@/user/components/user-avatar.vue';
+import UserMenu from '@/user/components/user-menu.vue';
 
 export default defineComponent({
   name: 'AppSidebarItemUser',
@@ -25,7 +27,9 @@ export default defineComponent({
    * 数据
    */
   data() {
-    return {};
+    return {
+      showUserMenu: false,
+    };
   },
 
   /**
@@ -54,7 +58,7 @@ export default defineComponent({
   methods: {
     onClickUserAvatar() {
       if (this.currentUser) {
-        console.log('click');
+        this.showUserMenu = !this.showUserMenu;
       }
     },
   },
@@ -64,6 +68,7 @@ export default defineComponent({
    */
   components: {
     UserAvatar,
+    UserMenu,
   },
 });
 </script>

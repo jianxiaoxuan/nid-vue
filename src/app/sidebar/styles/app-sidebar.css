@@ -22,3 +22,7 @@
 .app-sidebar-item.brand {
   margin-bottom: 64px;
 }
+
+.app-sidebar-item.user {
+  position: relative;
+}
