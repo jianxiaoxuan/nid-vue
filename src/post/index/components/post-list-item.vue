@@ -1,18 +1,20 @@
 <template>
-  <h3>
-    <router-link :to="{ name: 'postShow', params: { postId: item.id } }">
-      {{ item.title }}
-    </router-link>
-    - <small>{{ item.user.name }}</small>
-  </h3>
+  <div class="post-list-item">
+    <PostListItemMedia :item="item" />
+  </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import PostListItemMedia from './post-list-item-media.vue';
 
 export default defineComponent({
   props: {
     item: Object,
+  },
+
+  components: {
+    PostListItemMedia,
   },
 });
 </script>
