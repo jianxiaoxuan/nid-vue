@@ -20,6 +20,9 @@
         </router-link>
       </div>
     </div>
+    <div class="user-menu-footer">
+      <button class="button block">退出登录</button>
+    </div>
   </div>
 </template>
 

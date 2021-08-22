@@ -17,6 +17,8 @@
   /* Button */
   --primary-button-background: #000;
   --outline-button-color: #000;
+  --lowkey-button-background: #e0e0e0;
+  --lowkey-button-text-color: #5a5a5a;
 }
 
 .page.dark {
@@ -38,4 +40,6 @@
   /* Button */
   --primary-button-background: #555;
   --outline-button-color: #555;
+  --lowkey-button-background: #3b3b3b;
+  --lowkey-button-text-color: #898989;
 }

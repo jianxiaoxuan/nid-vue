@@ -26,3 +26,14 @@
   border: none;
   padding: 0;
 }
+
+.button.block {
+  display: block;
+  width: 100%;
+}
+
+.button.lowkey {
+  background: var(--lowkey-button-background);
+  border-color: var(--lowkey-button-background);
+  color: var(--lowkey-button-text-color);
+}
