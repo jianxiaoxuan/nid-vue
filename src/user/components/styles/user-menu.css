@@ -49,3 +49,22 @@
 .user-menu-header .link:hover {
   color: var(--primary-text-color) !important;
 }
+
+.user-menu-items {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line-color);
+}
+
+.user-menu-item > .link {
+  font-weight: normal;
+  display: block;
+  color: var(--secondary-text-color);
+  padding: 8px 0;
+  transition: 0.1s;
+}
+
+.user-menu-item > .link:hover {
+  background: var(--light-background);
+  padding: 8px;
+  color: var(--primary-text-color);
+}
