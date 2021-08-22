@@ -12,3 +12,23 @@
   border-radius: 5px;
   box-shadow: 10px 30px 30px rgba(0, 0, 0, 0.1);
 }
+
+.user-menu-enter-active {
+  opacity: 0;
+  transform: translateX(-24px);
+  transition: 0.3s;
+}
+
+.user-menu-enter-to {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.user-menu-leave-active {
+  transition: 0.3s;
+}
+
+.user-menu-leave-to {
+  transform: translateX(-24px);
+  opacity: 0;
+}

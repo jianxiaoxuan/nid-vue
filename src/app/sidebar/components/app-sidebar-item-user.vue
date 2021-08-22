@@ -5,7 +5,9 @@
       :link="userAvatarLink"
       @click="onClickUserAvatar"
     />
-    <UserMenu v-if="showUserMenu" />
+    <transition name="user-menu">
+      <UserMenu v-if="showUserMenu" />
+    </transition>
   </div>
 </template>
 
