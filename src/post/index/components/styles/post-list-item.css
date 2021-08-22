@@ -7,3 +7,8 @@
   grid-row-start: auto;
   grid-row-end: span 2;
 }
+
+.post-list-item.stackable-minimal,
+.post-list-item.flow-minimal {
+  grid-template-columns: 1fr;
+}
