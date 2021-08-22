@@ -10,7 +10,8 @@ import PostListItem from './post-list-item';
 
 export default defineComponent({
   async created() {
-    this.getPosts();
+    await this.getPosts();
+    console.log(this.posts);
   },
 
   computed: {
