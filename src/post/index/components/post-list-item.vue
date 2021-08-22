@@ -1,5 +1,5 @@
 <template>
-  <div class="post-list-item">
+  <div :class="postListItemClasses">
     <PostListItemMedia :item="item" />
   </div>
 </template>
@@ -13,8 +13,18 @@ export default defineComponent({
     item: Object,
   },
 
+  computed: {
+    postListItemClasses() {
+      return ['post-list-item', this.item.file.orientation];
+    },
+  },
+
   components: {
     PostListItemMedia,
   },
 });
 </script>
+
+<style scoped>
+@import './styles/post-list-item.css';
+</style>
