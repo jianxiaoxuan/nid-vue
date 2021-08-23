@@ -8,6 +8,12 @@
   width: 100%;
 }
 
+.post-show > .section.meta.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+
 @media (max-width: 838px) {
   .post-show {
     max-width: 100%;
