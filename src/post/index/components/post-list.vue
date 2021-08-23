@@ -16,7 +16,10 @@ import PostListItemSkeleton from './post-list-item-skeleton.vue';
 
 export default defineComponent({
   async created() {
-    await this.getPosts();
+    this.sort =
+      this.$route.name === 'postIndexPopular' ? 'most_comments' : 'latest';
+
+    await this.getPosts({ sort: this.sort });
 
     // 内容列表布局
     const layout = getStorage('post-list-layout');
@@ -58,6 +61,7 @@ export default defineComponent({
   data() {
     return {
       prevScrollTop: 0,
+      sort: '',
     };
   },
 
@@ -78,21 +82,12 @@ export default defineComponent({
           clientHeight,
         } = document.documentElement;
 
-        console.log(
-          'scrollTop: ',
-          scrollTop,
-          'scrollHeight',
-          scrollHeight,
-          'clientHeight',
-          clientHeight,
-        );
-
         const height = clientHeight + scrollTop + 200;
         const touchDown = scrollHeight - height < 0;
         const scrollDown = scrollTop > this.prevScrollTop;
 
         if (touchDown && scrollDown && !this.loading && this.hasMore) {
-          this.getPosts();
+          this.getPosts({ sort: this.sort });
         }
 
         this.prevScrollTop = scrollTop;
