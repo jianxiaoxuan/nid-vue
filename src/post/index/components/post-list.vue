@@ -1,6 +1,9 @@
 <template>
   <div :class="postListClasses">
     <PostListItem v-for="post in posts" :item="post" :key="post.id" />
+    <template v-if="loading">
+      <PostListItemSkeleton v-for="number in 20" :key="number" />
+    </template>
   </div>
 </template>
 
@@ -9,6 +12,7 @@ import { getStorage } from '@/app/app.service';
 import { defineComponent } from 'vue';
 import { mapGetters, mapActions, mapMutations } from 'vuex';
 import PostListItem from './post-list-item';
+import PostListItemSkeleton from './post-list-item-skeleton.vue';
 
 export default defineComponent({
   async created() {
@@ -48,6 +52,7 @@ export default defineComponent({
 
   components: {
     PostListItem,
+    PostListItemSkeleton,
   },
 });
 </script>

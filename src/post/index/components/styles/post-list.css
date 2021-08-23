@@ -1,6 +1,7 @@
 .post-list {
   display: grid;
   gap: 32px 32px;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
 }
 
 .post-list.flow,

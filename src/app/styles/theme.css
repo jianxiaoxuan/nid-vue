@@ -19,6 +19,9 @@
   --outline-button-color: #000;
   --lowkey-button-background: #e0e0e0;
   --lowkey-button-text-color: #5a5a5a;
+
+  /* Skeleton */
+  --skeleton-background: #f0f0f0;
 }
 
 .page.dark {
@@ -42,4 +45,7 @@
   --outline-button-color: #555;
   --lowkey-button-background: #3b3b3b;
   --lowkey-button-text-color: #898989;
+
+  /* Skeleton */
+  --skeleton-background: #2b2b2b;
 }
