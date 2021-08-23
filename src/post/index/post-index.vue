@@ -8,7 +8,14 @@ import PostList from './components/post-list';
 
 export default defineComponent({
   title() {
-    return '内容列表';
+    let title;
+
+    if (this.$route.name === 'postIndexPopular') {
+      title = '热门';
+    } else {
+      title = '最近';
+    }
+    return title;
   },
 
   components: {
