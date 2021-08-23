@@ -2,6 +2,7 @@ import { Module } from 'vuex';
 import { apiHttpClient } from '../../app/app.service';
 import { RootState } from '../../app/app.store';
 import { User } from '../../user/show/user-show.store';
+import { postFileProcess } from '../post.service';
 
 export default interface Post {
   id: number;
@@ -48,7 +49,9 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
     },
 
     post(state) {
-      return Object.keys(state.post).length ? state.post : null;
+      return Object.keys(state.post).length
+        ? postFileProcess(state.post)
+        : null;
     },
   },
 
