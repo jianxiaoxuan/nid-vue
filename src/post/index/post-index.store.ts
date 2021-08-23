@@ -1,8 +1,9 @@
 import { Module } from 'vuex';
 import { API_BASE_URL, POSTS_PER_PAGE } from '../../app/app.config';
-import { apiHttpClient } from '../../app/app.service';
+import { apiHttpClient, queryStringProcess } from '../../app/app.service';
 import { RootState } from '../../app/app.store';
 import { User } from '../../user/show/user-show.store';
+import { StringifiableRecord } from 'query-string';
 
 export interface PostListItem {
   id: number;
@@ -36,6 +37,7 @@ export interface PostIndexStoreState {
   layout: string;
   nextPage: number;
   totalPages: number;
+  queryString: string;
 }
 
 export interface GetPostsOptions {
@@ -51,6 +53,7 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
     layout: '',
     nextPage: 1,
     totalPages: 1,
+    queryString: '',
   } as PostIndexStoreState,
 
   getters: {
@@ -120,15 +123,19 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
         state.nextPage++;
       }
     },
+
+    setQueryString(state, data) {
+      state.queryString = data;
+    },
   },
 
   actions: {
     async getPosts({ commit, state, dispatch }, options: GetPostsOptions = {}) {
-      commit('setLoading', true);
+      const getPostsQueryString = await dispatch('getPostsPreProcess', options);
 
       try {
         const response = await apiHttpClient.get(
-          `/posts?page=${state.nextPage}&sort=${options.sort}`,
+          `/posts?page=${state.nextPage}&${getPostsQueryString}`,
         );
 
         dispatch('getPostsPostProcess', response);
@@ -137,6 +144,24 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
         commit('setLoading', false);
         throw error.response;
       }
+    },
+
+    getPostsPreProcess({ commit, state }, options: GetPostsOptions) {
+      commit('setLoading', true);
+
+      const getPostsQueryObject: StringifiableRecord = {
+        sort: options.sort,
+      };
+
+      const getPostsQueryString = queryStringProcess(getPostsQueryObject);
+
+      if (state.queryString !== getPostsQueryString) {
+        commit('setNextPage', 1);
+      }
+
+      commit('setQueryString', getPostsQueryString);
+
+      return getPostsQueryString;
     },
 
     getPostsPostProcess({ commit, state }, response) {
