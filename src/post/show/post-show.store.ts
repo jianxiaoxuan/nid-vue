@@ -1,11 +1,32 @@
 import { Module } from 'vuex';
 import { apiHttpClient } from '../../app/app.service';
 import { RootState } from '../../app/app.store';
+import { User } from '../../user/show/user-show.store';
 
-export interface Post {
+export default interface Post {
   id: number;
   title: string;
   content: string;
+  user: User;
+  totalComments: number;
+  totalLikes: number;
+  file: {
+    id: number;
+    width: number;
+    height: number;
+    orientation: string;
+    size: {
+      thumbnail: string;
+      medium: string;
+      large: string;
+    };
+  };
+  tags: [
+    {
+      id: number;
+      name: string;
+    },
+  ];
 }
 
 export interface PostShowStoreState {
