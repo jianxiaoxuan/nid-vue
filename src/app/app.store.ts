@@ -12,6 +12,7 @@ import {
   appToolbarStoreModule,
   AppToolbarStoreState,
 } from './toolbar/app-toolbar.store';
+import { fileStoreModule, FileStoreState } from '../file/file.store';
 
 export interface RootState {
   appName: string;
@@ -21,6 +22,7 @@ export interface RootState {
   notification: AppNotificationStoreState;
   user: UserStoreState;
   toolbar: AppToolbarStoreState;
+  file: FileStoreState;
 }
 
 /**
@@ -38,6 +40,7 @@ const store = createStore({
     notification: appNotificationStoreModule,
     user: userStoreModule,
     toolbar: appToolbarStoreModule,
+    file: fileStoreModule,
   },
 
   plugins: [localStorageStorePlugin],
