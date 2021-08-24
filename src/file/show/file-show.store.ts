@@ -3,7 +3,24 @@ import { RootState } from '@/app/app.store';
 import { apiHttpClient } from '@/app/app.service';
 
 export interface FileMetadata {
-  data: null;
+  id: number;
+  size: number;
+  width: number;
+  height: number;
+  metadata: {
+    Make: string;
+    Model: string;
+    LensMake: string;
+    LensModel: string;
+    Software: string;
+    Orientation: number;
+    CreateDate: number;
+    ModifyDate: number;
+    FNumber: number;
+    FocalLength: number;
+    ExposureTime: number;
+    IOS: number;
+  };
 }
 
 export interface FileShowStoreState {
