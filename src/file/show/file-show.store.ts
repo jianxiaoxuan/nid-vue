@@ -19,7 +19,7 @@ export interface FileMetadata {
     FNumber: number;
     FocalLength: number;
     ExposureTime: number;
-    IOS: number;
+    ISO: number;
   };
 }
 
@@ -86,7 +86,7 @@ export const fileShowStoreModule: Module<FileShowStoreState, RootState> = {
       return kit.filter(item => item.value !== '');
     },
 
-    spece(state) {
+    specs(state) {
       let specs: Array<MetaItem> = [];
 
       if (state.fileMetadata) {
@@ -94,7 +94,7 @@ export const fileShowStoreModule: Module<FileShowStoreState, RootState> = {
           FocalLength,
           FNumber,
           ExposureTime,
-          IOS,
+          ISO,
         } = state.fileMetadata.metadata;
 
         specs = [
@@ -115,7 +115,7 @@ export const fileShowStoreModule: Module<FileShowStoreState, RootState> = {
           },
           {
             title: '感光',
-            value: `${IOS}`,
+            value: `${ISO}`,
           },
         ];
       }
