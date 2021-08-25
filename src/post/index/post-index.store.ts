@@ -47,6 +47,11 @@ export interface GetPostsOptions {
   filter?: { [name: string]: string };
 }
 
+export interface FilterItem {
+  title?: string;
+  value?: string;
+}
+
 export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
   namespaced: true,
 
@@ -75,6 +80,29 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
 
     hasMore(state) {
       return state.totalPages - state.nextPage >= 0;
+    },
+
+    filterItems(state) {
+      const items: Array<FilterItem> = [];
+
+      if (state.filter) {
+        Object.keys(state.filter).forEach(filterName => {
+          const item: FilterItem = {};
+
+          switch (filterName) {
+            case 'tag':
+              item.title = '标签';
+              break;
+          }
+
+          if (item.title && state.filter) {
+            item.value = state.filter[filterName];
+            items.push(item);
+          }
+        });
+      }
+
+      return items;
     },
   },
 
