@@ -29,7 +29,7 @@ export default defineComponent({
   },
 
   async created() {
-    await this.getPosts({ sort: this.sort });
+    await this.getPosts({ sort: this.sort, filter: this.filter });
 
     // 内容列表布局
     const layout = getStorage('post-list-layout');
@@ -96,11 +96,20 @@ export default defineComponent({
         const scrollDown = scrollTop > this.prevScrollTop;
 
         if (touchDown && scrollDown && !this.loading && this.hasMore) {
-          this.getPosts({ sort: this.sort });
+          this.getPosts({ sort: this.sort, filter: this.filter });
         }
 
         this.prevScrollTop = scrollTop;
       }
+    },
+  },
+
+  /**
+   * 监视
+   */
+  watch: {
+    filter() {
+      this.getPosts({ sort: this.sort, filter: this.filter });
     },
   },
 
