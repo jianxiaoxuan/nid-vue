@@ -4,11 +4,15 @@ import {
   postCreateStoreModule,
   PostCreateStoreState,
 } from './create/post-create.store';
-import { postIndexStoreModule } from './index/post-index.store';
+import {
+  postIndexStoreModule,
+  PostIndexStoreState,
+} from './index/post-index.store';
 import { postShowStoreModule } from './show/post-show.store';
 
 export interface PostStoreState {
   create: PostCreateStoreState;
+  index: PostIndexStoreState;
 }
 
 export const postStoreModule: Module<PostStoreState, RootState> = {

@@ -10,6 +10,7 @@ export const appToolbarItemGuard = (
   next: NavigationGuardNext,
 ) => {
   let showPostListLayoutSwitcher = false;
+  let showPostShowNavigator = false;
 
   switch (to.name) {
     case 'home':
@@ -19,12 +20,17 @@ export const appToolbarItemGuard = (
     case 'userLiked':
       showPostListLayoutSwitcher = true;
       break;
+    case 'postShow':
+      showPostShowNavigator = true;
+      break;
   }
 
   appStore.commit(
     'toolbar/setShowPostListLayoutSwitcher',
     showPostListLayoutSwitcher,
   );
+
+  appStore.commit('toolbar/setShowPostShowNavigator', showPostShowNavigator);
 
   next();
 };
