@@ -1,4 +1,5 @@
 <template>
+  <PostShowSkeleton :class="postShowClasses" v-if="!showPost" />
   <div :class="postShowClasses" v-if="showPost">
     <PostShowMedia :post="post" @click="onClickPostShowMedia" />
     <div class="section meta actions">
@@ -21,6 +22,7 @@ import PostShowContent from './components/post-show-content.vue';
 import PostShowActions from './components/post-show-actions.vue';
 import PostShowFileMeta from './components/post-show-file-meta.vue';
 import PostShowTags from './components/post-show-tags.vue';
+import PostShowSkeleton from './components/post-show-skeleton.vue';
 
 export default defineComponent({
   title() {
@@ -81,6 +83,7 @@ export default defineComponent({
     PostShowActions,
     PostShowFileMeta,
     PostShowTags,
+    PostShowSkeleton,
   },
 });
 </script>
