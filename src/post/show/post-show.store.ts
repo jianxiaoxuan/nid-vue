@@ -87,6 +87,13 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
         rootState.post.index.posts.length !== getters.currentPostIndex + 1
       );
     },
+
+    canGetMorePosts(_, getters, rootState, rootGetters) {
+      return (
+        rootGetters['post/index/hasMore'] &&
+        rootState.post.index.posts.length - getters.currentPostIndex < 3
+      );
+    },
   },
 
   mutations: {
@@ -141,6 +148,10 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
 
     async goGetNextPost({ getters, dispatch }) {
       if (!getters.canNavigateForward) return;
+
+      if (getters.canGetMorePosts) {
+        dispatch('post/index/getPosts', {}, { root: true });
+      }
 
       try {
         const response = await dispatch('getPostById', getters.nextPost.id);
