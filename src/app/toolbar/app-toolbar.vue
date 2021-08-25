@@ -5,9 +5,11 @@
         <PostListLayoutIconSwitcher />
       </div>
     </transition>
-    <div class="app-toolbar-item navigator" v-if="showPostShowNavigator">
-      <PostShowNavigator />
-    </div>
+    <transition name="app-toolbar-item-navigator">
+      <div class="app-toolbar-item navigator" v-if="showPostShowNavigator">
+        <PostShowNavigator />
+      </div>
+    </transition>
     <AppToolbarItemSearch />
   </div>
 </template>
