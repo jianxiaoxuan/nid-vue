@@ -15,6 +15,8 @@ export const appToolbarItemGuard = (
     case 'home':
     case 'postIndex':
     case 'postIndexPopular':
+    case 'userPosts':
+    case 'userLiked':
       showPostListLayoutSwitcher = true;
       break;
   }
