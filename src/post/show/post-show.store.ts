@@ -3,6 +3,7 @@ import { apiHttpClient } from '../../app/app.service';
 import { RootState } from '../../app/app.store';
 import { User } from '../../user/show/user-show.store';
 import { postFileProcess } from '../post.service';
+import appRouter from '@/app/app.router';
 
 export default interface Post {
   id: number;
@@ -59,6 +60,20 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
     layout(state) {
       return state.layout;
     },
+
+    currentPostIndex(state, _, rootState) {
+      return rootState.post.index.posts.findIndex(
+        item => item.id === state.post.id,
+      );
+    },
+
+    prevPost(_, getters, rootState) {
+      return rootState.post.index.posts[getters.currentPostIndex - 1];
+    },
+
+    nextPost(_, getters, rootState) {
+      return rootState.post.index.posts[getters.currentPostIndex + 1];
+    },
   },
 
   mutations: {
@@ -88,6 +103,40 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
       } catch (error) {
         commit('setLoading', false);
 
+        throw error.response;
+      }
+    },
+
+    async goGetPrevPost({ getters, dispatch }) {
+      try {
+        const response = await dispatch('getPostById', getters.prevPost.id);
+
+        if (getters.prevPost) {
+          appRouter.replace({
+            name: 'postShow',
+            params: { postId: getters.prevPost.id },
+          });
+        }
+
+        return response;
+      } catch (error) {
+        throw error.response;
+      }
+    },
+
+    async goGetNextPost({ getters, dispatch }) {
+      try {
+        const response = await dispatch('getPostById', getters.nextPost.id);
+
+        if (getters.nextPost) {
+          appRouter.replace({
+            name: 'postShow',
+            params: { postId: getters.nextPost.id },
+          });
+        }
+
+        return response;
+      } catch (error) {
         throw error.response;
       }
     },
