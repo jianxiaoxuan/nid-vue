@@ -10,6 +10,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'postIndex',
     path: '/posts',
     component: PostIndex,
+    props: route => {
+      return {
+        sort: 'latest',
+        filter: route.query,
+      };
+    },
   },
   {
     name: 'postShow',
@@ -21,6 +27,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'postIndexPopular',
     path: '/popular',
     component: PostIndex,
+    props: route => {
+      return {
+        sort: 'most_comments',
+        filter: route.query,
+      };
+    },
   },
 ];
 

@@ -9,6 +9,12 @@ const routes: Array<RouteRecordRaw> = [
     name: 'home',
     path: '/',
     component: AppHome,
+    props: route => {
+      return {
+        sort: 'latest',
+        filter: route.query,
+      };
+    },
   },
 ];
 
