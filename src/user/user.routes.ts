@@ -20,11 +20,29 @@ const routes: Array<RouteRecordRaw> = [
         name: 'userPosts',
         path: '',
         component: UserPosts,
+        props: route => {
+          return {
+            sort: 'latest',
+            filter: {
+              user: route.params.userId,
+              action: 'published',
+            },
+          };
+        },
       },
       {
         name: 'userLiked',
         path: 'liked',
         component: UserLiked,
+        props: route => {
+          return {
+            sort: 'latest',
+            filter: {
+              user: route.params.userId,
+              action: 'liked',
+            },
+          };
+        },
       },
       {
         name: 'userComments',

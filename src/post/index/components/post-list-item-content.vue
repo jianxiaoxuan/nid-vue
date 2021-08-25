@@ -1,7 +1,7 @@
 <template>
   <div class="post-list-item-content">
     <div class="thumbnail">
-      <UserAvatar :user="item.user" />
+      <UserAvatar :user="item.user" link="user" />
     </div>
 
     <div class="header">
