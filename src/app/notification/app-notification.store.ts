@@ -42,7 +42,9 @@ export const appNotificationStoreModule: Module<
    */
   mutations: {
     addMessage(state, data) {
-      state.messages = [data, ...state.messages];
+      if (!state.messages.some(message => message.content === data.content)) {
+        state.messages = [data, ...state.messages];
+      }
     },
 
     deleteMessage(state, data) {
