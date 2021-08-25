@@ -1,6 +1,12 @@
 .post-show-media {
   margin-bottom: 16px;
   cursor: pointer;
+  background: var(--light-background);
+}
+
+.post-show-media.loading {
+  padding-top: 66.66%;
+  box-sizing: border-box;
 }
 
 .post-show-media > .image {
