@@ -5,6 +5,7 @@
     </div>
     <div class="content">
       <ReplyListItemMeta :item="item" />
+      <ReplyListItemContent :item="item" />
     </div>
   </div>
 </template>
@@ -13,6 +14,7 @@
 import { defineComponent } from 'vue';
 import UserAvatar from '@/user/components/user-avatar.vue';
 import ReplyListItemMeta from './reply-list-item-meta.vue';
+import ReplyListItemContent from './reply-list-item-content.vue';
 
 export default defineComponent({
   name: 'ReplyListItem',
@@ -56,6 +58,7 @@ export default defineComponent({
   components: {
     UserAvatar,
     ReplyListItemMeta,
+    ReplyListItemContent,
   },
 });
 </script>
