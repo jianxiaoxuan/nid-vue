@@ -131,14 +131,13 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
       if (!getters.canNavigateBack) return;
 
       try {
-        const response = await dispatch('getPostById', getters.prevPost.id);
+        const prevPostId = getters.prevPost.id;
+        const response = await dispatch('getPostById', prevPostId);
 
-        if (getters.prevPost) {
-          appRouter.replace({
-            name: 'postShow',
-            params: { postId: getters.prevPost.id },
-          });
-        }
+        appRouter.replace({
+          name: 'postShow',
+          params: { postId: prevPostId },
+        });
 
         return response;
       } catch (error) {
@@ -147,6 +146,7 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
     },
 
     async goGetNextPost({ getters, dispatch }) {
+      const nextPostId = getters.nextPost.id;
       if (!getters.canNavigateForward) return;
 
       if (getters.canGetMorePosts) {
@@ -154,14 +154,12 @@ export const postShowStoreModule: Module<PostShowStoreState, RootState> = {
       }
 
       try {
-        const response = await dispatch('getPostById', getters.nextPost.id);
+        const response = await dispatch('getPostById', nextPostId);
 
-        if (getters.nextPost) {
-          appRouter.replace({
-            name: 'postShow',
-            params: { postId: getters.nextPost.id },
-          });
-        }
+        appRouter.replace({
+          name: 'postShow',
+          params: { postId: nextPostId },
+        });
 
         return response;
       } catch (error) {
