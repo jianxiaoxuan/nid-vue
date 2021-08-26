@@ -1,22 +1,24 @@
 <template>
-  <div class="reply-list">
-    <ReplyListItem v-for="reply in list" :key="reply.id" :item="reply" />
+  <div class="reply-list-item">
+    <div class="thumbnail">
+      <UserAvatar :user="item.user" link="user" />
+    </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import ReplyListItem from './reply-list-item.vue';
+import UserAvatar from '@/user/components/user-avatar.vue';
 
 export default defineComponent({
-  name: 'ReplyList',
+  name: 'ReplyListItem',
 
   /**
    * 属性
    */
   props: {
-    list: {
-      type: Array,
+    item: {
+      type: Object,
     },
   },
 
@@ -48,11 +50,11 @@ export default defineComponent({
    * 使用组件
    */
   components: {
-    ReplyListItem,
+    UserAvatar,
   },
 });
 </script>
 
 <style scoped>
-@import './styles/reply-list.css';
+@import './styles/reply-list-item.css';
 </style>
