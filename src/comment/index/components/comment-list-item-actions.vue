@@ -1,13 +1,17 @@
 <template>
   <div class="comment-list-item-actions">
     <div class="action" v-if="item.totalReplies">
-      <button class="button basic">{{ item.totalReplies }} 条回复</button>
+      <button class="button basic" @click="onClickTotalRepliesButton">
+        {{ item.totalReplies }} 条回复
+        <AppIcon :name="totalRepliesIconName" />
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import AppIcon from '@/app/components/app-icon.vue';
 
 export default defineComponent({
   name: 'CommentListItemActions',
@@ -25,13 +29,24 @@ export default defineComponent({
    * 数据
    */
   data() {
-    return {};
+    return {
+      showReplies: false,
+    };
   },
+
+  /**
+   * 事件
+   */
+  emits: ['toggle-replies'],
 
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+    totalRepliesIconName() {
+      return this.showReplies ? 'arrow_drop_up' : 'arrow_drop_down';
+    },
+  },
 
   /**
    * 已创建
@@ -43,12 +58,19 @@ export default defineComponent({
   /**
    * 组件方法
    */
-  methods: {},
+  methods: {
+    onClickTotalRepliesButton() {
+      this.showReplies = !this.showReplies;
+      this.$emit('toggle-replies', this.showReplies);
+    },
+  },
 
   /**
    * 使用组件
    */
-  components: {},
+  components: {
+    AppIcon,
+  },
 });
 </script>
 

@@ -6,7 +6,8 @@
     <div class="content">
       <CommentListItemMeta :item="item" />
       <CommentListItemContent :item="item" />
-      <CommentListItemActions :item="item" />
+      <CommentListItemActions :item="item" @toggle-replies="onToggleReplies" />
+      <div v-if="showReplies">回复列表</div>
     </div>
   </div>
 </template>
@@ -34,7 +35,9 @@ export default defineComponent({
    * 数据
    */
   data() {
-    return {};
+    return {
+      showReplies: false,
+    };
   },
 
   /**
@@ -52,7 +55,11 @@ export default defineComponent({
   /**
    * 组件方法
    */
-  methods: {},
+  methods: {
+    onToggleReplies(data) {
+      this.showReplies = data;
+    },
+  },
 
   /**
    * 使用组件
