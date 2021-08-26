@@ -1,21 +1,15 @@
 <template>
-  <div class="comment-list-item">
-    <div class="thumbnail">
-      <UserAvatar :user="item.user" link="user" />
-    </div>
-    <div class="content">
-      <CommentListItemMeta :item="item" />
-    </div>
+  <div class="comment-list-item-meta">
+    <UserName :user="item.user" />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import UserAvatar from '@/user/components/user-avatar.vue';
-import CommentListItemMeta from './comment-list-item-meta.vue';
+import UserName from '@/user/components/user-name.vue';
 
 export default defineComponent({
-  name: 'CommentListItem',
+  name: 'CommentListItemMeta',
 
   /**
    * 属性
@@ -54,12 +48,11 @@ export default defineComponent({
    * 使用组件
    */
   components: {
-    UserAvatar,
-    CommentListItemMeta,
+    UserName,
   },
 });
 </script>
 
 <style scoped>
-@import './styles/comment-list-item.css';
+@import './styles/comment-list-item-meta.css';
 </style>
