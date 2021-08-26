@@ -1,9 +1,13 @@
 <template>
-  <div class="reply-index">ReplyIndex</div>
+  <div class="reply-index">
+    <ReplyList :list="replies" />
+  </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import { mapGetters, mapActions } from 'vuex';
+import ReplyList from './components/reply-list.vue';
 
 export default defineComponent({
   name: 'ReplyIndex',
@@ -27,24 +31,35 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+    ...mapGetters({
+      loading: 'reply/index/loading',
+      replies: 'reply/index/replies',
+    }),
+  },
 
   /**
    * 已创建
    */
   created() {
-    //
+    this.getReplies(this.comment.id);
   },
 
   /**
    * 组件方法
    */
-  methods: {},
+  methods: {
+    ...mapActions({
+      getReplies: 'reply/index/getReplies',
+    }),
+  },
 
   /**
    * 使用组件
    */
-  components: {},
+  components: {
+    ReplyList,
+  },
 });
 </script>
 
