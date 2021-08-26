@@ -1,11 +1,11 @@
 .post-list-item.skeleton > .post-list-item-media {
-  min-height: 200px;
   background: var(--skeleton-background);
 }
 
-.post-list-item.stackable.skeleton > .post-list-item-media,
-.post-list-item.stackable-minimal.skeleton > .post-list-item-media {
-  min-height: 350px;
+.post-list-item.skeleton > .post-list-item-media::after {
+  display: block;
+  content: ' ';
+  padding-top: 66.66%;
 }
 
 .post-list-item.skeleton > .post-list-item-content > .thumbnail {
