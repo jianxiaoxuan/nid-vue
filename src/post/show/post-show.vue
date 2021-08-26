@@ -44,6 +44,19 @@ export default defineComponent({
     if (layout) {
       this.setLayout(layout);
     }
+
+    if (window) {
+      window.addEventListener('keyup', this.onKeyUpWindow);
+    }
+  },
+
+  /**
+   * 取消挂载
+   */
+  unmounted() {
+    if (window) {
+      window.removeEventListener('keyup', this.onKeyUpWindow);
+    }
   },
 
   computed: {
@@ -52,6 +65,7 @@ export default defineComponent({
       post: 'post/show/post',
       layout: 'post/show/layout',
       sideSheetComponent: 'layout/sideSheetComponent',
+      posts: 'post/index/posts',
     }),
 
     showPost() {
@@ -74,6 +88,16 @@ export default defineComponent({
 
     onClickPostShowMedia() {
       this.setLayout(`${this.layout ? '' : 'flow'}`);
+    },
+
+    onKeyUpWindow(event) {
+      switch (event.key) {
+        case 'b':
+          if (this.posts.length) {
+            this.$router.back();
+          }
+          break;
+      }
     },
   },
 
