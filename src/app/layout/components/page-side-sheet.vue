@@ -1,8 +1,10 @@
 <template>
-  <div class="page-side-sheet" v-if="sideSheetComponent">
-    <CloseButton @click="onClickCloseButton" />
-    <component :is="sideSheetComponent"></component>
-  </div>
+  <transition name="page-side-sheet">
+    <div class="page-side-sheet" v-if="sideSheetComponent">
+      <CloseButton @click="onClickCloseButton" />
+      <component :is="sideSheetComponent"></component>
+    </div>
+  </transition>
 </template>
 
 <script>
