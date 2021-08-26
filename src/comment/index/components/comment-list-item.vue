@@ -7,7 +7,7 @@
       <CommentListItemMeta :item="item" />
       <CommentListItemContent :item="item" />
       <CommentListItemActions :item="item" @toggle-replies="onToggleReplies" />
-      <div v-if="showReplies">回复列表</div>
+      <ReplyIndex :comment="item" v-if="showReplies" />
     </div>
   </div>
 </template>
@@ -18,6 +18,7 @@ import UserAvatar from '@/user/components/user-avatar.vue';
 import CommentListItemMeta from './comment-list-item-meta.vue';
 import CommentListItemContent from './comment-list-item-content.vue';
 import CommentListItemActions from './comment-list-item-actions.vue';
+import ReplyIndex from '@/reply/index/reply-index.vue';
 
 export default defineComponent({
   name: 'CommentListItem',
@@ -69,6 +70,7 @@ export default defineComponent({
     CommentListItemMeta,
     CommentListItemContent,
     CommentListItemActions,
+    ReplyIndex,
   },
 });
 </script>
