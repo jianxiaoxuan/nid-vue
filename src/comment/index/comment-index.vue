@@ -1,11 +1,12 @@
 <template>
   <div class="comment-index">
-    <CommentList />
+    <CommentList :filter="filter" />
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import { mapGetters } from 'vuex';
 import CommentList from './components/comment-list.vue';
 
 export default defineComponent({
@@ -26,7 +27,15 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+    ...mapGetters({
+      sideSheetProps: 'layout/sideSheetProps',
+    }),
+
+    filter() {
+      return this.sideSheetProps.filter;
+    },
+  },
 
   /**
    * 已创建
