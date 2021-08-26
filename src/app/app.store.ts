@@ -13,6 +13,10 @@ import {
   AppToolbarStoreState,
 } from './toolbar/app-toolbar.store';
 import { fileStoreModule, FileStoreState } from '../file/file.store';
+import {
+  commentStoreModule,
+  CommentStoreState,
+} from '../comment/comment.store';
 
 export interface RootState {
   appName: string;
@@ -23,6 +27,7 @@ export interface RootState {
   user: UserStoreState;
   toolbar: AppToolbarStoreState;
   file: FileStoreState;
+  comment: CommentStoreState;
 }
 
 /**
@@ -41,6 +46,7 @@ const store = createStore({
     user: userStoreModule,
     toolbar: appToolbarStoreModule,
     file: fileStoreModule,
+    comment: commentStoreModule,
   },
 
   plugins: [localStorageStorePlugin],
