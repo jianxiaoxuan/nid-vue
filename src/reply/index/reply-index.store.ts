@@ -12,7 +12,9 @@ export interface ReplyListItem {
   };
 }
 
-export type Replies = Array<ReplyListItem>;
+export type Replies = {
+  [commentId: number]: Array<ReplyListItem>;
+};
 
 export interface ReplyIndexStoreState {
   loading: boolean;
@@ -30,7 +32,7 @@ export const replyIndexStoreModule: Module<ReplyIndexStoreState, RootState> = {
    */
   state: {
     loading: false,
-    replies: [],
+    replies: {},
   } as ReplyIndexStoreState,
 
   /**
@@ -41,8 +43,8 @@ export const replyIndexStoreModule: Module<ReplyIndexStoreState, RootState> = {
       return state.loading;
     },
 
-    replies(state) {
-      return state.replies;
+    replies: state => (commentId: number) => {
+      return state.replies[commentId];
     },
   },
 
@@ -55,7 +57,7 @@ export const replyIndexStoreModule: Module<ReplyIndexStoreState, RootState> = {
     },
 
     setReplies(state, data) {
-      state.replies = data;
+      state.replies = { ...state.replies, ...data };
     },
   },
 
@@ -70,7 +72,9 @@ export const replyIndexStoreModule: Module<ReplyIndexStoreState, RootState> = {
         const response = await apiHttpClient.get(
           `comments/${commentId}/replies`,
         );
-        commit('setReplies', response.data);
+        commit('setReplies', {
+          [commentId]: response.data,
+        });
         commit('setLoading', false);
 
         return response;
