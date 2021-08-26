@@ -1,5 +1,5 @@
 <template>
-  <div class="post-list-item-media">
+  <div :class="postListItemMediaClasses">
     <router-link class="link" :to="itemLinkTo">
       <img class="image" :src="item.file.size.medium" />
     </router-link>
@@ -19,6 +19,11 @@ export default defineComponent({
     item: {
       type: Object,
     },
+
+    aspectRatio: {
+      type: String,
+      default: '3-2',
+    },
   },
 
   /**
@@ -34,6 +39,14 @@ export default defineComponent({
   computed: {
     itemLinkTo() {
       return { name: 'postShow', params: { postId: this.item.id } };
+    },
+
+    postListItemMediaClasses() {
+      return [
+        'post-list-item-media',
+        this.item.file.orientation,
+        `aspect-ratio-${this.aspectRatio}`,
+      ];
     },
   },
 
