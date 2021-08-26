@@ -22,6 +22,9 @@
 
   /* Skeleton */
   --skeleton-background: #f0f0f0;
+
+  /* Sheet */
+  --page-side-sheet-background: #f8f8f8;
 }
 
 .page.dark {
@@ -48,4 +51,7 @@
 
   /* Skeleton */
   --skeleton-background: #2b2b2b;
+
+  /* Sheet */
+  --page-side-sheet-background: #262626;
 }
