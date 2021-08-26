@@ -4,6 +4,7 @@
 
 <script>
 import { defineComponent } from 'vue';
+import { mapGetters, mapActions } from 'vuex';
 
 export default defineComponent({
   name: 'CommentList',
@@ -23,19 +24,29 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+    ...mapGetters({
+      loading: 'comment/index/loading',
+      comments: 'comment/index/comments',
+    }),
+  },
 
   /**
    * 已创建
    */
-  created() {
-    //
+  async created() {
+    await this.getComments();
+    console.log(this.comments);
   },
 
   /**
    * 组件方法
    */
-  methods: {},
+  methods: {
+    ...mapActions({
+      getComments: 'comment/index/getComments',
+    }),
+  },
 
   /**
    * 使用组件
