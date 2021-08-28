@@ -1,11 +1,13 @@
 <template>
   <div class="comment-create">
+    <TextareaField />
     CommentCreate
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import TextareaField from '@/app/components/textarea-field';
 
 export default defineComponent({
   name: 'CommentCreate',
@@ -45,6 +47,7 @@ export default defineComponent({
    * 使用组件
    */
   components: {
+    TextareaField,
   },
 });
 </script>
