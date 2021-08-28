@@ -4,7 +4,12 @@
       <UserAvatar :user="currentUser" link="login" />
     </div>
     <div class="content">
-      <TextareaField placeholder="发表评论" v-model="content" />
+      <TextareaField
+        placeholder="发表评论"
+        v-model="content"
+        @keyup.stop
+        @keydown.stop="onKeyDownCommentTextarea"
+      />
       <div class="actions">
         <button class="button" v-if="currentUser" @click="onClickCancelButton">
           取消
@@ -105,6 +110,15 @@ export default defineComponent({
     },
     onClickLoginButton() {
       console.log('login');
+    },
+
+    onKeyDownCommentTextarea(event) {
+      if (
+        (event.ctrlKey && event.key === 'Enter') ||
+        (event.metaKey && event.key === 'Enter')
+      ) {
+        this.submitComment();
+      }
     },
   },
 
