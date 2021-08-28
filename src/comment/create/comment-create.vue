@@ -56,6 +56,7 @@ export default defineComponent({
   computed: {
     ...mapGetters({
       currentUser: 'user/currentUser',
+      sideSheetProps: 'layout/sideSheetProps',
     }),
   },
 
@@ -70,13 +71,34 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
-    ...mapActions({}),
+    ...mapActions({
+      pushMessage: 'notification/pushMessage',
+      createComment: 'comment/create/createComment',
+    }),
+
+    async submitComment() {
+      if (!this.currentUser) {
+        this.pushMessage({ content: '请先登陆' });
+        return;
+      }
+
+      try {
+        await this.createComment({
+          postId: this.sideSheetProps.filter.post,
+          content: this.content,
+        });
+
+        this.content = '';
+      } catch (error) {
+        this.pushMessage({ content: error.data.message });
+      }
+    },
 
     onClickCancelButton() {
-      console.log('cancel');
+      this.content = '';
     },
     onClickSubmitButton() {
-      console.log('submit');
+      this.submitComment();
     },
     onClickRegisterButton() {
       console.log('register');

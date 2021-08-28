@@ -2,9 +2,9 @@
   <div class="textarea-field field">
     <textarea
       class="input textarea"
-      :value="modulValue"
+      :value="modelValue"
       :placeholder="placeholder"
-      @input="$emit('update:modulValue', $event.target.value)"
+      @input="$emit('update:modelValue', $event.target.value)"
     >
     </textarea>
   </div>
