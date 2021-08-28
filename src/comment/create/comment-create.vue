@@ -106,10 +106,10 @@ export default defineComponent({
       this.submitComment();
     },
     onClickRegisterButton() {
-      console.log('register');
+      this.$router.push({ name: 'login' });
     },
     onClickLoginButton() {
-      console.log('login');
+      this.$router.push({ name: 'login' });
     },
 
     onKeyDownCommentTextarea(event) {
