@@ -1,17 +1,14 @@
 <template>
-  <div class="comment-side-sheet">
-    <CommentCreate />
-    <CommentIndex />
+  <div class="comment-create">
+    CommentCreate
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import CommentIndex from '@/comment/index/comment-index.vue';
-import CommentCreate from '@/comment/create/comment-create';
 
 export default defineComponent({
-  name: 'CommentSideSheet',
+  name: 'CommentCreate',
 
   /**
    * 属性
@@ -28,30 +25,30 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+  },
 
   /**
    * 已创建
    */
   created() {
-    //
+  // 
   },
 
   /**
    * 组件方法
    */
-  methods: {},
+  methods: {
+  },
 
   /**
    * 使用组件
    */
   components: {
-    CommentCreate,
-    CommentIndex,
   },
 });
 </script>
 
 <style scoped>
-@import './styles/comment-side-sheet.css';
+@import './styles/comment-create.css';
 </style>
