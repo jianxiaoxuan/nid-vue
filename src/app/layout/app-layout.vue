@@ -4,7 +4,7 @@
     <page-aside />
     <div class="page-main">
       <slot></slot>
-      <PageSideSheet />
+      <PageSideSheet @scroll="onScrollPageSideSheet" ref="pageSideSheet" />
     </div>
     <AppNotification />
   </div>
@@ -61,7 +61,20 @@ export default defineComponent({
   methods: {
     ...mapMutations({
       setTheme: 'layout/setTheme',
+      setSideSheetTouchdown: 'layout/setSideSheetTouchdown',
     }),
+
+    onScrollPageSideSheet() {
+      const {
+        scrollTop,
+        scrollHeight,
+        clientHeight,
+      } = this.$refs.PageSideSheet.$el;
+
+      if (clientHeight + scrollTop === scrollHeight) {
+        this.setSideSheetTouchdown(true);
+      }
+    },
   },
 
   /**
