@@ -11,20 +11,32 @@
         @keydown.stop="onKeyDownCommentTextarea"
       />
       <div class="actions">
-        <button class="button" v-if="currentUser" @click="onClickCancelButton">
+        <button
+          class="button pill"
+          v-if="currentUser"
+          @click="onClickCancelButton"
+        >
           取消
         </button>
-        <button class="button" v-if="currentUser" @click="onClickSubmitButton">
+        <button
+          class="button pill"
+          v-if="currentUser"
+          @click="onClickSubmitButton"
+        >
           发布
         </button>
         <button
-          class="button"
+          class="button pill"
           v-if="!currentUser"
           @click="onClickRegisterButton"
         >
           注册
         </button>
-        <button class="button" v-if="!currentUser" @click="onClickLoginButton">
+        <button
+          class="button pill"
+          v-if="!currentUser"
+          @click="onClickLoginButton"
+        >
           登陆
         </button>
       </div>
