@@ -6,11 +6,17 @@
         <AppIcon :name="totalRepliesIconName" />
       </button>
     </div>
+    <div class="action" v-if="showOwnCommentOperation">
+      <button class="button basic" @click="onClickDeleteButton">
+        {{ deleteButtonText }}
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import { mapGetters } from 'vuex';
 import AppIcon from '@/app/components/app-icon.vue';
 
 export default defineComponent({
@@ -23,6 +29,10 @@ export default defineComponent({
     item: {
       type: Object,
     },
+
+    showOperation: {
+      type: Boolean,
+    },
   },
 
   /**
@@ -31,6 +41,7 @@ export default defineComponent({
   data() {
     return {
       showReplies: false,
+      confirmDelete: false,
     };
   },
 
@@ -43,8 +54,24 @@ export default defineComponent({
    * 计算属性
    */
   computed: {
+    ...mapGetters({
+      currentUser: 'user/currentUser',
+    }),
+
     totalRepliesIconName() {
       return this.showReplies ? 'arrow_drop_up' : 'arrow_drop_down';
+    },
+
+    showOwnCommentOperation() {
+      return (
+        this.currentUser &&
+        this.currentUser.id === this.item.user.id &&
+        this.showOperation
+      );
+    },
+
+    deleteButtonText() {
+      return this.confirmDelete ? '确定删除' : '删除';
     },
   },
 
@@ -62,6 +89,10 @@ export default defineComponent({
     onClickTotalRepliesButton() {
       this.showReplies = !this.showReplies;
       this.$emit('toggle-replies', this.showReplies);
+    },
+
+    onClickDeleteButton() {
+      this.confirmDelete = !this.confirmDelete;
     },
   },
 

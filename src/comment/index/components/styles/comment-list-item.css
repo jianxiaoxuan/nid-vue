@@ -6,3 +6,7 @@
 .comment-list-item > .thumbnail {
   margin-right: 16px;
 }
+
+.comment-list-item > .content {
+  flex-grow: 2;
+}

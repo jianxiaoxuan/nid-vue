@@ -5,8 +5,15 @@
     </div>
     <div class="content">
       <CommentListItemMeta :item="item" />
-      <CommentListItemContent :item="item" />
-      <CommentListItemActions :item="item" @toggle-replies="onToggleReplies" />
+      <CommentListItemContent
+        :item="item"
+        @click="onClickCommentListItemContent"
+      />
+      <CommentListItemActions
+        :item="item"
+        @toggle-replies="onToggleReplies"
+        :showOperation="showOperation"
+      />
       <ReplyIndex :comment="item" v-if="showReplies" />
     </div>
   </div>
@@ -38,6 +45,7 @@ export default defineComponent({
   data() {
     return {
       showReplies: false,
+      showOperation: false,
     };
   },
 
@@ -59,6 +67,10 @@ export default defineComponent({
   methods: {
     onToggleReplies(data) {
       this.showReplies = data;
+    },
+
+    onClickCommentListItemContent() {
+      this.showOperation = !this.showOperation;
     },
   },
 
