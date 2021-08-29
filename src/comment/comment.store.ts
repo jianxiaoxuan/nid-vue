@@ -7,8 +7,10 @@ import {
 } from './index/comment-index.store';
 
 import { CommentCreateStoreState, commentCreateStoreModule } from '@/comment/create/comment-create.store';
+import { CommentDestroyStoreState, commentDestroyStoreModule } from '@/comment/destroy/comment-destroy.store';
 
 export interface CommentStoreState {
+  destroy: CommentDestroyStoreState;
   create: CommentCreateStoreState;
   index: CommentIndexStoreState;
 }
@@ -43,6 +45,7 @@ export const commentStoreModule: Module<CommentStoreState, RootState> = {
    * 模块
    */
   modules: {
+    destroy: commentDestroyStoreModule,
     create: commentCreateStoreModule,
     index: commentIndexStoreModule,
   },
