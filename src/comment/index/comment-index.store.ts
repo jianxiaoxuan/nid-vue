@@ -67,6 +67,10 @@ export const commentIndexStoreModule: Module<
     comments(state) {
       return state.comments;
     },
+
+    hasMore(state) {
+      return state.totalPages - state.nextPage >= 0;
+    },
   },
 
   /**

@@ -69,7 +69,7 @@ export default defineComponent({
         scrollTop,
         scrollHeight,
         clientHeight,
-      } = this.$refs.PageSideSheet.$el;
+      } = this.$refs.pageSideSheet.$el;
 
       if (clientHeight + scrollTop === scrollHeight) {
         this.setSideSheetTouchdown(true);
