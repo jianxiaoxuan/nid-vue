@@ -34,6 +34,8 @@ export default defineComponent({
     };
   },
 
+  emits: ['updated'],
+
   /**
    * 计算属性
    */
@@ -50,14 +52,28 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
-    ...mapActions({}),
+    ...mapActions({
+      updateComment: 'comment/edit/updateComment',
+      pushMessage: 'notification/pushMessage',
+    }),
 
     onClickCancelButton() {
       this.commentContent = this.comment.content;
     },
 
     async onClickUpdateButton() {
-      console.log('update');
+      if (!this.commentContent.trim()) return;
+
+      try {
+        await this.updateComment({
+          commentId: this.comment.id,
+          content: this.commentContent,
+        });
+
+        this.$emit('updated', this.commentContent);
+      } catch (error) {
+        this.pushMessage({ content: error.data.message });
+      }
     },
   },
 

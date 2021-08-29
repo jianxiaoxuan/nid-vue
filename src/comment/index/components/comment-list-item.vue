@@ -6,11 +6,15 @@
     <div class="content">
       <CommentListItemMeta :item="item" />
       <CommentListItemContent
-        :item="item"
+        :item="comment"
         @click="onClickCommentListItemContent"
         v-if="!isEditing"
       />
-      <CommentEdit v-if="isEditing" :comment="item" />
+      <CommentEdit
+        v-if="isEditing"
+        :comment="item"
+        @updated="onUpdatedComment"
+      />
       <CommentListItemActions
         :item="item"
         @toggle-replies="onToggleReplies"
@@ -52,6 +56,7 @@ export default defineComponent({
       showReplies: false,
       showOperation: false,
       isEditing: false,
+      comment: this.item,
     };
   },
 
@@ -81,6 +86,11 @@ export default defineComponent({
 
     onEditingComment() {
       this.isEditing = !this.isEditing;
+    },
+
+    onUpdatedComment(data) {
+      this.comment.content = data;
+      this.isEditing = false;
     },
   },
 
