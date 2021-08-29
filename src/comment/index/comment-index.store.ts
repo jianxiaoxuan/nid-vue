@@ -105,6 +105,10 @@ export const commentIndexStoreModule: Module<
     setTotalPages(state, data) {
       state.totalPages = data;
     },
+
+    removeCommentItem(state, data) {
+      state.comments = state.comments.filter(item => item.id !== data);
+    },
   },
 
   /**
