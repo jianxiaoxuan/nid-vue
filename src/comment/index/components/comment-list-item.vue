@@ -24,7 +24,11 @@
         @replying="onReplyingComment"
         :isReplying="isReplying"
       />
-      <ReplyCreate v-if="isReplying" :comment="item" />
+      <ReplyCreate
+        v-if="isReplying"
+        :comment="item"
+        :showReplies="showReplies"
+      />
       <ReplyIndex :comment="item" v-if="showReplies" />
     </div>
   </div>
