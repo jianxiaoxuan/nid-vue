@@ -4,3 +4,17 @@
   margin-bottom: 8px;
   cursor: pointer;
 }
+
+.comment-list-item-content > .content {
+  margin-bottom: 16px;
+}
+
+.comment-list-item-content > .meta {
+  font-size: 12px;
+  line-height: 12px;
+  margin-bottom: 8px;
+}
+
+.comment-list-item-content > .meta > .link {
+  color: var(--secondary-text-color);
+}
