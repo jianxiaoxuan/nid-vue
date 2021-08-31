@@ -61,6 +61,14 @@ const routes: Array<RouteRecordRaw> = [
         name: 'userReplies',
         path: 'replies',
         component: UserReplies,
+        props: route => {
+          return {
+            filter: {
+              user: route.params.userId,
+              action: 'replied',
+            },
+          };
+        },
       },
       {
         name: 'userAccount',

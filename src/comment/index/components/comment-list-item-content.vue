@@ -1,5 +1,8 @@
 <template>
   <div class="comment-list-item-content">
+    <div class="quote" v-if="item.repliedComment">
+      {{ item.repliedComment.content }}
+    </div>
     <div class="content">
       {{ item.content }}
     </div>

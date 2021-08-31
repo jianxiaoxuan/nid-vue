@@ -18,3 +18,28 @@
 .comment-list-item-content > .meta > .link {
   color: var(--secondary-text-color);
 }
+
+.comment-list-item-content > .quote {
+  display: inline-block;
+  position: relative;
+  font-size: 12px;
+  color: var(--light-text-color);
+  padding: 16px 24px;
+  max-width: 300px;
+  border: 1px solid var(--line-color);
+  border-radius: 10px;
+  margin-bottom: 16px;
+}
+
+.comment-list-item-content > .quote::after {
+  display: block;
+  content: ' ';
+  width: 0;
+  height: 0;
+  position: absolute;
+  bottom: -7px;
+  filter: var(--reply-filter);
+  border-top: 8px solid var(--primary-background);
+  border-right: 8px solid transparent;
+  border-left: 8px solid transparent;
+}

@@ -7,7 +7,7 @@
       </button>
     </div>
     <div class="action" @click="onClickReplyButton">
-      <button class="button basic" @click="onClickDeleteButton">
+      <button class="button basic" @click="onClickCancelButton">
         {{ replyButtonText }}
       </button>
     </div>
