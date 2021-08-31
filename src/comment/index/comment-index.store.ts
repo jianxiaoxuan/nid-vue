@@ -109,6 +109,20 @@ export const commentIndexStoreModule: Module<
     removeCommentItem(state, data) {
       state.comments = state.comments.filter(item => item.id !== data);
     },
+
+    increaseTotalReplies(state, data) {
+      state.comments = state.comments.map(item => {
+        if (item.id === data) {
+          if (item.totalReplies) {
+            item.totalReplies++;
+          } else {
+            item.totalReplies = 1;
+          }
+        }
+
+        return item;
+      });
+    },
   },
 
   /**
