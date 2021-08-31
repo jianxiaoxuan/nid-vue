@@ -4,7 +4,11 @@
       <UserAvatar :user="currentUser" />
     </div>
     <div class="content">
-      <TextareaField />
+      <TextareaField
+        placeholder="回复评论"
+        v-model="content"
+        @keydown="onKeyDownReplyTextarea"
+      />
       <div class="actions">
         <button class="button pill" @click="onClickCancelButton">取消</button>
         <button class="button pill" @click="onClickReplyButton">回复</button>
@@ -25,14 +29,25 @@ export default defineComponent({
   /**
    * 属性
    */
-  props: {},
+  props: {
+    comment: {
+      type: Object,
+    },
+  },
 
   /**
    * 数据
    */
   data() {
-    return {};
+    return {
+      content: '',
+    };
   },
+
+  /**
+   * 事件
+   */
+  emits: ['replied'],
 
   /**
    * 计算属性
@@ -55,14 +70,44 @@ export default defineComponent({
    */
   methods: {
     ...mapMutations({}),
-    ...mapActions({}),
+    ...mapActions({
+      createReply: 'reply/create/createReply',
+      pushMessage: 'notification/pushMessage',
+    }),
+
+    async submitReply() {
+      if (!this.content.trim()) return;
+
+      try {
+        await this.createReply({
+          commentId: this.comment.id,
+          postId: this.comment.post.id,
+          content: this.content,
+        });
+
+        this.content = '';
+
+        this.$emit('replied', this.comment.id);
+      } catch (error) {
+        this.pushMessage({ content: error.data.message });
+      }
+    },
 
     onClickCancelButton() {
-      console.log('cancel');
+      this.content = '';
     },
 
     onClickReplyButton() {
       console.log('reply');
+    },
+
+    onKeyDownReplyTextarea(event) {
+      if (
+        (event.ctrlKey && event.key === 'Enter') ||
+        (event.metaKey && event.key === 'Enter')
+      ) {
+        this.submitReply();
+      }
     },
   },
 
