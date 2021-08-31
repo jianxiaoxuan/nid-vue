@@ -75,6 +75,7 @@ export default defineComponent({
   methods: {
     ...mapMutations({
       removeReplyItem: 'reply/index/removeReplyItem',
+      decreaseTotalReplies: 'comment/index/decreaseTotalReplies',
     }),
 
     ...mapActions({
@@ -91,6 +92,8 @@ export default defineComponent({
             commentId: this.comment.id,
             replyId: this.item.id,
           });
+
+          this.decreaseTotalReplies(this.comment.id);
         } catch (error) {
           this.pushMessage({ content: error.data.message });
         }

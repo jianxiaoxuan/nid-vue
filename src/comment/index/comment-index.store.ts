@@ -123,6 +123,18 @@ export const commentIndexStoreModule: Module<
         return item;
       });
     },
+
+    decreaseTotalReplies(state, data) {
+      state.comments = state.comments.map(item => {
+        if (item.id === data) {
+          if (item.totalReplies) {
+            item.totalReplies--;
+          }
+        }
+
+        return item;
+      });
+    },
   },
 
   /**
