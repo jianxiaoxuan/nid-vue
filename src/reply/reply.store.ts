@@ -1,11 +1,15 @@
 import { Module } from 'vuex';
 import { RootState } from '@/app/app.store';
+
 import {
   replyIndexStoreModule,
   ReplyIndexStoreState,
 } from './index/reply-index.store';
 
+import { ReplyCreateStoreState, replyCreateStoreModule } from '@/reply/create/reply-create.store';
+
 export interface ReplyStoreState {
+  create: ReplyCreateStoreState;
   index: ReplyIndexStoreState;
 }
 
@@ -39,6 +43,7 @@ export const replyStoreModule: Module<ReplyStoreState, RootState> = {
    * 模块
    */
   modules: {
+    create: replyCreateStoreModule,
     index: replyIndexStoreModule,
   },
 };
