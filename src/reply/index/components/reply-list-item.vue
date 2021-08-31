@@ -6,7 +6,11 @@
     <div class="content">
       <ReplyListItemMeta :item="item" />
       <ReplyListItemContent :item="item" @click="onClickReplyListItemContent" />
-      <ReplyListItemActions :item="item" :showOperation="showOperation" />
+      <ReplyListItemActions
+        :item="item"
+        :showOperation="showOperation"
+        :comment="comment"
+      />
     </div>
   </div>
 </template>
@@ -26,6 +30,10 @@ export default defineComponent({
    */
   props: {
     item: {
+      type: Object,
+    },
+
+    comment: {
       type: Object,
     },
   },

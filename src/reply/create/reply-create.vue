@@ -112,7 +112,7 @@ export default defineComponent({
     },
 
     onClickReplyButton() {
-      console.log('reply');
+      this.submitReply();
     },
 
     onKeyDownReplyTextarea(event) {
