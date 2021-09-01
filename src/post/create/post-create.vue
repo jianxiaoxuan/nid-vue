@@ -55,7 +55,7 @@ export default defineComponent({
    * 监视
    */
   watch: {
-    $route(to, from) {
+    $route(to) {
       const { post: postId } = to.query;
 
       if (postId) {
