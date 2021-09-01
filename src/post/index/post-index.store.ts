@@ -71,7 +71,9 @@ export const postIndexStoreModule: Module<PostIndexStoreState, RootState> = {
     },
 
     posts(state) {
-      return state.posts.map(post => postFileProcess(post));
+      return state.posts
+        .map(post => postFileProcess(post))
+        .filter(post => post.file);
     },
 
     layout(state) {
