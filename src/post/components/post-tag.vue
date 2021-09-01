@@ -5,11 +5,17 @@
         {{ tag.name }}
       </router-link>
     </div>
+    <div class="action" v-if="useDeleteButton">
+      <button class="button basic" @click="onClickDeleteButton">
+        <AppIcon name="close" size="14" color="#656565" />
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
+import AppIcon from '@/app/components/app-icon';
 
 export default defineComponent({
   name: 'PostTag',
@@ -21,6 +27,11 @@ export default defineComponent({
     tag: {
       type: Object,
     },
+
+    useDeleteButton: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   /**
@@ -29,6 +40,11 @@ export default defineComponent({
   data() {
     return {};
   },
+
+  /**
+   * 事件
+   */
+  emits: ['delete'],
 
   /**
    * 计算属性
@@ -49,12 +65,18 @@ export default defineComponent({
   /**
    * 组件方法
    */
-  methods: {},
+  methods: {
+    onClickDeleteButton() {
+      this.$emit('delete', this.tag.id);
+    },
+  },
 
   /**
    * 使用组件
    */
-  components: {},
+  components: {
+    AppIcon,
+  },
 });
 </script>
 
