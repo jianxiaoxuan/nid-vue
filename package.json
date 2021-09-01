@@ -18,7 +18,7 @@
     "iv": "vue invoke vue-cli-plugin-nid --importVuex"
   },
   "dependencies": {
-    "axios": "0.20.0",
+    "axios": "0.21.0",
     "core-js": "^3.6.5",
     "query-string": "6.13.7",
     "vue": "^3.0.0-0",

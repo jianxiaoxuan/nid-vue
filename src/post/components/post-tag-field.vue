@@ -11,7 +11,13 @@
       </button>
     </div>
     <div class="meta" v-if="tags">
-      <PostTag v-for="tag in tags" :key="tag.id" :tag="tag" useDeleteButton />
+      <PostTag
+        v-for="tag in tags"
+        :key="tag.id"
+        :tag="tag"
+        useDeleteButton
+        @delete="onDeletePostTag"
+      />
     </div>
   </div>
 </template>
@@ -68,6 +74,7 @@ export default defineComponent({
     ...mapActions({
       createPostTag: 'post/edit/createPostTag',
       pushMessage: 'notification/pushMessage',
+      deletePostTag: 'post/edit/deletePostTag',
     }),
 
     onClickAddButton() {
@@ -88,6 +95,14 @@ export default defineComponent({
             name: this.name,
           },
         });
+      } catch (error) {
+        this.pushMessage({ content: error.data.message });
+      }
+    },
+
+    async onDeletePostTag(tagId) {
+      try {
+        await this.deletePostTag({ postId: this.postId, tagId });
       } catch (error) {
         this.pushMessage({ content: error.data.message });
       }

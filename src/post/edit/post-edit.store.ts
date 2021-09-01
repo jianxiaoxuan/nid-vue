@@ -27,6 +27,11 @@ export interface CreatePostTagOptions {
   data?: TagItem;
 }
 
+export interface DeletePostTagOptions {
+  postId?: number;
+  tagId?: number;
+}
+
 export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
   /**
    * 命名空间
@@ -98,6 +103,35 @@ export const postEditStoreModule: Module<PostEditStoreState, RootState> = {
 
       try {
         const response = await apiHttpClient.post(`posts/${postId}/tag`, data);
+
+        const {
+          data: { tags },
+        } = await dispatch('post/show/getPostById', postId, { root: true });
+
+        commit('setLoading', false);
+
+        commit('setTags', tags);
+
+        return response;
+      } catch (error) {
+        commit('setLoading', false);
+
+        throw error.response;
+      }
+    },
+
+    async deletePostTag(
+      { commit, dispatch },
+      options: DeletePostTagOptions = {},
+    ) {
+      commit('setLoading', true);
+
+      const { postId, tagId } = options;
+
+      try {
+        const response = await apiHttpClient.delete(`posts/${postId}/tag`, {
+          data: { tagId },
+        });
 
         const {
           data: { tags },
