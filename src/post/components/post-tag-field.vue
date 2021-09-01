@@ -60,14 +60,32 @@ export default defineComponent({
    */
   methods: {
     ...mapMutations({}),
-    ...mapActions({}),
+    ...mapActions({
+      createPostTag: 'post/edit/createPostTag',
+      pushMessage: 'notification/pushMessage',
+    }),
 
     onClickAddButton() {
-      console.log('add');
+      this.submitCreatePostTag();
     },
 
     onKeyUpEnterTag() {
-      console.log('enter');
+      this.submitCreatePostTag();
+    },
+
+    async submitCreatePostTag() {
+      if (!this.name) return;
+
+      try {
+        await this.createPostTag({
+          postId: this.postId,
+          data: {
+            name: this.name,
+          },
+        });
+      } catch (error) {
+        this.pushMessage({ content: error.data.message });
+      }
     },
   },
 
