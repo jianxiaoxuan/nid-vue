@@ -6,8 +6,8 @@
         <AppIcon :name="totalRepliesIconName" />
       </button>
     </div>
-    <div class="action" @click="onClickReplyButton">
-      <button class="button basic" @click="onClickCancelButton">
+    <div class="action" v-if="!item.repliedComment">
+      <button class="button basic" @click="onClickReplyButton">
         {{ replyButtonText }}
       </button>
     </div>
