@@ -83,12 +83,17 @@ export default defineComponent({
       createPost: 'post/create/createPost',
       pushMessage: 'notification/pushMessage',
       getPostById: 'post/show/getPostById',
+      updatePost: 'post/edit/updatePost',
     }),
 
     onClickSubmitButton() {
       if (!this.title.trim()) return;
 
-      this.submitCreatePost();
+      if (this.postId) {
+        this.submitUpdatePost();
+      } else {
+        this.submitCreatePost();
+      }
     },
 
     async submitCreatePost() {
@@ -128,6 +133,20 @@ export default defineComponent({
       this.title = '';
       this.content = '';
       this.postId = null;
+    },
+
+    async submitUpdatePost() {
+      try {
+        await this.updatePost({
+          postId: this.postId,
+          data: {
+            title: this.title,
+            content: this.content,
+          },
+        });
+      } catch (error) {
+        this.pushMessage({ content: error.data.message });
+      }
     },
   },
 
