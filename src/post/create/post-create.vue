@@ -1,17 +1,14 @@
 <template>
-  <div class="app-sidebar-item add">
-    <router-link class="link" :to="{ name: 'postCreate' }">
-      <AppIcon name="add_a_photo" />
-    </router-link>
+  <div class="post-create">
+    PostCreate
   </div>
 </template>
 
 <script>
 import { defineComponent } from 'vue';
-import AppIcon from '@/app/components/app-icon.vue';
 
 export default defineComponent({
-  name: 'AppSidebarItemAdd',
+  name: 'PostCreate',
 
   /**
    * 属性
@@ -28,27 +25,30 @@ export default defineComponent({
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+  },
 
   /**
    * 已创建
    */
   created() {
-    //
+  // 
   },
 
   /**
    * 组件方法
    */
-  methods: {},
+  methods: {
+  },
 
   /**
    * 使用组件
    */
   components: {
-    AppIcon,
   },
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+@import './styles/post-create.css';
+</style>
