@@ -4,6 +4,7 @@
       class="input textarea"
       :value="modelValue"
       :placeholder="placeholder"
+      :rows="rows"
       @input="$emit('update:modelValue', $event.target.value)"
     >
     </textarea>
@@ -26,6 +27,11 @@ export default defineComponent({
 
     placeholder: {
       type: String,
+    },
+
+    rows: {
+      type: Number,
+      default: 2,
     },
   },
 
