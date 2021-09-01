@@ -11,13 +11,14 @@
       </button>
     </div>
     <div class="meta" v-if="tags">
-      <PostTag
-        v-for="tag in tags"
-        :key="tag.id"
-        :tag="tag"
-        useDeleteButton
-        @delete="onDeletePostTag"
-      />
+      <transition-group name="post-tag">
+        <PostTag
+          v-for="tag in tags"
+          :key="tag.id"
+          :tag="tag"
+          useDeleteButton
+          @delete="onDeletePostTag"
+      /></transition-group>
     </div>
   </div>
 </template>
