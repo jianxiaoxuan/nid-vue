@@ -18,7 +18,7 @@
 import { defineComponent } from 'vue';
 import TextField from '@/app/components/text-field';
 import TextareaField from '@/app/components/textarea-field';
-import { mapGetters, mapActions } from 'vuex';
+import { mapGetters, mapActions, mapMutations } from 'vuex';
 import PostTagField from '@/post/components/post-tag-field';
 
 export default defineComponent({
@@ -88,6 +88,10 @@ export default defineComponent({
       updatePost: 'post/edit/updatePost',
     }),
 
+    ...mapMutations({
+      setTags: 'post/edit/setTags',
+    }),
+
     onClickSubmitButton() {
       if (!this.title.trim()) return;
 
@@ -121,11 +125,12 @@ export default defineComponent({
     async getPost(postId) {
       try {
         const response = await this.getPostById(postId);
-        const { title, content } = response.data;
+        const { title, content, tags } = response.data;
 
         this.postId = postId;
         this.title = title;
         this.content = content;
+        this.setTags(tags);
       } catch (error) {
         this.pushMessage({ content: error.data.message });
       }

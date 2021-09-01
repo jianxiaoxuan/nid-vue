@@ -10,7 +10,9 @@
         <AppIcon name="add" />
       </button>
     </div>
-    <div class="meta"></div>
+    <div class="meta" v-if="tags">
+      <PostTag v-for="tag in tags" :key="tag.id" :tag="tag" />
+    </div>
   </div>
 </template>
 
@@ -19,6 +21,7 @@ import { defineComponent } from 'vue';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import AppIcon from '@/app/components/app-icon';
 import TextField from '@/app/components/text-field';
+import PostTag from '@/post/components/post-tag';
 
 export default defineComponent({
   name: 'PostTagField',
@@ -45,7 +48,9 @@ export default defineComponent({
    * 计算属性
    */
   computed: {
-    ...mapGetters({}),
+    ...mapGetters({
+      tags: 'post/edit/tags',
+    }),
   },
 
   /**
@@ -93,6 +98,7 @@ export default defineComponent({
    * 使用组件
    */
   components: {
+    PostTag,
     TextField,
     AppIcon,
   },
