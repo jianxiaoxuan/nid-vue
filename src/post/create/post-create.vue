@@ -1,7 +1,15 @@
 <template>
   <div class="post-create">
-    <TextField placeholder="标题" />
-    <TextareaField placeholder="描述" class="bordered" :rows="1" />
+    <TextField placeholder="标题" v-model="title" />
+    <TextareaField
+      placeholder="描述"
+      class="bordered"
+      :rows="1"
+      v-model="content"
+    />
+    <button class="button large" @click="onClickSubmitButton">
+      {{ submitButtonText }}
+    </button>
   </div>
 </template>
 
@@ -22,13 +30,20 @@ export default defineComponent({
    * 数据
    */
   data() {
-    return {};
+    return {
+      title: '',
+      content: '',
+    };
   },
 
   /**
    * 计算属性
    */
-  computed: {},
+  computed: {
+    submitButtonText() {
+      return '发布';
+    },
+  },
 
   /**
    * 已创建
@@ -40,7 +55,11 @@ export default defineComponent({
   /**
    * 组件方法
    */
-  methods: {},
+  methods: {
+    onClickSubmitButton() {
+      console.log(this.title, this.content);
+    },
+  },
 
   /**
    * 使用组件
