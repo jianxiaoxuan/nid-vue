@@ -1,7 +1,7 @@
 <template>
   <div class="post-show-header">
     <div class="content">
-      <h1 class="text">{{ post.title }}</h1>
+      <h1 class="text" @click="onClickPostTitle">{{ post.title }}</h1>
       <div class="meta">
         <UserName :user="post.user" />
       </div>
@@ -37,6 +37,11 @@ export default defineComponent({
   },
 
   /**
+   * 事件
+   */
+  emits: ['click'],
+
+  /**
    * 计算属性
    */
   computed: {},
@@ -51,7 +56,11 @@ export default defineComponent({
   /**
    * 组件方法
    */
-  methods: {},
+  methods: {
+    onClickPostTitle() {
+      this.$emit('click');
+    },
+  },
 
   /**
    * 使用组件
