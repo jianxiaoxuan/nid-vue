@@ -3,7 +3,12 @@
     <PostTitleField />
     <PostContentField />
     <PostTagField :postId="postId" v-if="postId" />
-    <PostActions @update="submitUpdatePost" @create="submitCreatePost" />
+    <PostActions
+      @update="submitUpdatePost"
+      @create="submitCreatePost"
+      size="large"
+      :useDeleteButton="postId ? true : false"
+    />
   </div>
 </template>
 
@@ -29,6 +34,11 @@ export default defineComponent({
   data() {
     return {};
   },
+
+  /**
+   * 事件
+   */
+  // emits: ['update'],
 
   /**
    * 计算属性

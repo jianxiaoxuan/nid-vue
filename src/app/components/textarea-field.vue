@@ -6,7 +6,6 @@
       :placeholder="placeholder"
       :rows="rows"
       @input="onInputTextarea"
-      @change="onChangeTextarea"
     >
     </textarea>
   </div>
