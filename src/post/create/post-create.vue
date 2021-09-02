@@ -59,7 +59,7 @@ export default defineComponent({
       const { post: postId } = to.query;
 
       if (postId) {
-        this.getPost(postId);
+        this.getPost(parseInt(postId, 10));
       } else {
         this.reset();
       }
@@ -73,7 +73,7 @@ export default defineComponent({
     const { post: postId } = this.$route.query;
 
     if (postId) {
-      this.getPost(postId);
+      this.getPost(parseInt(postId, 10));
     }
   },
 
