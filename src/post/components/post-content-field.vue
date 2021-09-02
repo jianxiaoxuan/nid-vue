@@ -36,6 +36,7 @@ export default defineComponent({
   computed: {
     ...mapGetters({
       content: 'post/create/content',
+      unsaved: 'post/create/unsaved',
     }),
 
     postContent: {
@@ -66,7 +67,9 @@ export default defineComponent({
     }),
 
     onDirtyTextarea() {
-      this.setUnsaved(true);
+      if (!this.unsaved) {
+        this.setUnsaved(true);
+      }
     },
   },
 

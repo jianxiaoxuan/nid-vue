@@ -126,6 +126,7 @@ export default defineComponent({
       this.setTitle('');
       this.setContent('');
       this.setTags(null);
+      this.setUnsaved(false);
     },
 
     async submitUpdatePost() {
