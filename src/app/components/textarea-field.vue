@@ -6,6 +6,7 @@
       :placeholder="placeholder"
       :rows="rows"
       @input="$emit('update:modelValue', $event.target.value.trim())"
+      @change="onChangeTextarea"
     >
     </textarea>
   </div>
@@ -38,13 +39,15 @@ export default defineComponent({
   /**
    * 事件
    */
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'dirty'],
 
   /**
    * 数据
    */
   data() {
-    return {};
+    return {
+      value: '',
+    };
   },
 
   /**
@@ -62,7 +65,17 @@ export default defineComponent({
   /**
    * 组件方法
    */
-  methods: {},
+  methods: {
+    onChangeTextarea(event) {
+      const value = event.target.value.trim();
+
+      if (this.value !== value) {
+        this.$emit('dirty');
+      }
+
+      this.value = value;
+    },
+  },
 
   /**
    * 使用组件

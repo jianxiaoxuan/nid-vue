@@ -2,11 +2,8 @@
   <div class="post-create">
     <PostTitleField />
     <PostContentField />
-
-    <PostTagField :postId="postId" />
-    <button class="button large" @click="onClickSubmitButton">
-      {{ submitButtonText }}
-    </button>
+    <PostTagField :postId="postId" v-if="postId" />
+    <PostActions @update="submitUpdatePost" @create="submitCreatePost" />
   </div>
 </template>
 
@@ -16,6 +13,7 @@ import { mapGetters, mapActions, mapMutations } from 'vuex';
 import PostTagField from '@/post/components/post-tag-field';
 import PostTitleField from '@/post/components/post-title-field';
 import PostContentField from '@/post/components/post-content-field';
+import PostActions from '@/post/components/post-actions';
 
 export default defineComponent({
   name: 'PostCreate',
@@ -42,10 +40,6 @@ export default defineComponent({
       content: 'post/create/content',
       post: 'post/show/post',
     }),
-
-    submitButtonText() {
-      return this.postId ? '更新' : '发布';
-    },
   },
 
   /**
@@ -90,17 +84,8 @@ export default defineComponent({
       setPostId: 'post/create/setPostId',
       setTitle: 'post/create/setTitle',
       setContent: 'post/create/setContent',
+      setUnsaved: 'post/create/setUnsaved',
     }),
-
-    onClickSubmitButton() {
-      if (!this.title.trim()) return;
-
-      if (this.postId) {
-        this.submitUpdatePost();
-      } else {
-        this.submitCreatePost();
-      }
-    },
 
     async submitCreatePost() {
       try {
@@ -115,6 +100,8 @@ export default defineComponent({
           name: 'postCreate',
           query: { post: this.postId },
         });
+
+        this.setUnsaved(false);
       } catch (error) {
         this.pushMessage({ content: error.data.message });
       }
@@ -138,6 +125,7 @@ export default defineComponent({
       this.setPostId(null);
       this.setTitle('');
       this.setContent('');
+      this.setTags(null);
     },
 
     async submitUpdatePost() {
@@ -149,6 +137,8 @@ export default defineComponent({
             content: this.content,
           },
         });
+
+        this.setUnsaved(false);
       } catch (error) {
         this.pushMessage({ content: error.data.message });
       }
@@ -159,6 +149,7 @@ export default defineComponent({
    * 使用组件
    */
   components: {
+    PostActions,
     PostContentField,
     PostTitleField,
     PostTagField,

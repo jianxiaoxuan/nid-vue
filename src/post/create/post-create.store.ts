@@ -3,6 +3,7 @@ import { RootState } from '@/app/app.store';
 import { apiHttpClient } from '@/app/app.service';
 
 export interface PostCreateStoreState {
+  unsaved: boolean;
   postId: number | null;
   title: string;
   content: string;
@@ -28,6 +29,7 @@ export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
    * 数据
    */
   state: {
+    unsaved: false,
     postId: null,
     title: '',
     content: '',
@@ -38,6 +40,10 @@ export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
    * 获取器
    */
   getters: {
+    unsaved(state) {
+      return state.unsaved;
+    },
+
     postId(state) {
       return state.postId;
     },
@@ -59,6 +65,10 @@ export const postCreateStoreModule: Module<PostCreateStoreState, RootState> = {
    * 修改器
    */
   mutations: {
+    setUnsaved(state, data) {
+      state.unsaved = data;
+    },
+
     setPostId(state, data) {
       state.postId = data;
     },

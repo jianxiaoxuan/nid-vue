@@ -6,6 +6,7 @@
       :value="modelValue"
       :placeholder="placeholder"
       @input="$emit('update:modelValue', $event.target.value.trim())"
+      @change="onChangeText"
     />
   </div>
 </template>
@@ -37,13 +38,15 @@ export default defineComponent({
   /**
    * 事件
    */
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'dirty'],
 
   /**
    * 数据
    */
   data() {
-    return {};
+    return {
+      value: '',
+    };
   },
 
   /**
@@ -61,7 +64,17 @@ export default defineComponent({
   /**
    * 组件方法
    */
-  methods: {},
+  methods: {
+    onChangeText(event) {
+      const value = event.target.value.trim();
+
+      if (this.value !== value) {
+        this.$emit('dirty');
+      }
+
+      this.value = value;
+    },
+  },
 
   /**
    * 使用组件

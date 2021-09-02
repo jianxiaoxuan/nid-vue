@@ -1,6 +1,6 @@
 <template>
   <div class="post-title-field">
-    <TextField placeholder="标题" v-model="postTitle" />
+    <TextField placeholder="标题" v-model="postTitle" @dirty="onDirtyText" />
   </div>
 </template>
 
@@ -55,7 +55,12 @@ export default defineComponent({
   methods: {
     ...mapMutations({
       setTitle: 'post/create/setTitle',
+      setUnsaved: 'post/create/setUnsaved',
     }),
+
+    onDirtyText() {
+      this.setUnsaved(true);
+    },
   },
 
   /**
