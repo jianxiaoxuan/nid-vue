@@ -33,18 +33,19 @@ export default defineComponent({
    * 数据
    */
   data() {
-    return {
-      title: '',
-      content: '',
-      postId: null,
-    };
+    return {};
   },
 
   /**
    * 计算属性
    */
   computed: {
-    ...mapGetters({}),
+    ...mapGetters({
+      postId: 'post/create/postId',
+      title: 'post/create/title',
+      content: 'post/create/content',
+      post: 'post/show/post',
+    }),
 
     submitButtonText() {
       return this.postId ? '更新' : '发布';
@@ -90,6 +91,9 @@ export default defineComponent({
 
     ...mapMutations({
       setTags: 'post/edit/setTags',
+      setPostId: 'post/create/setPostId',
+      setTitle: 'post/create/setTitle',
+      setContent: 'post/create/setContent',
     }),
 
     onClickSubmitButton() {
@@ -104,14 +108,12 @@ export default defineComponent({
 
     async submitCreatePost() {
       try {
-        const response = await this.createPost({
+        await this.createPost({
           data: {
             title: this.title,
             content: this.content,
           },
         });
-
-        this.postId = response.data.insertId;
 
         this.$router.push({
           name: 'postCreate',
@@ -124,12 +126,12 @@ export default defineComponent({
 
     async getPost(postId) {
       try {
-        const response = await this.getPostById(postId);
-        const { title, content, tags } = response.data;
+        await this.getPostById(postId);
+        const { title, content, tags } = this.post;
 
-        this.postId = postId;
-        this.title = title;
-        this.content = content;
+        this.setPostId(postId);
+        this.setTitle(title);
+        this.setContent(content);
         this.setTags(tags);
       } catch (error) {
         this.pushMessage({ content: error.data.message });
@@ -137,9 +139,9 @@ export default defineComponent({
     },
 
     reset() {
-      this.title = '';
-      this.content = '';
-      this.postId = null;
+      this.setPostId(null);
+      this.setTitle('');
+      this.setContent('');
     },
 
     async submitUpdatePost() {
