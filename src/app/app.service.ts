@@ -12,6 +12,7 @@ export const apiHttpClient = axios.create({
 /**
  * 设置本地存储
  */
+// eslint-disable-next-line
 export const setStorage = (key: string, value: any) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
@@ -36,3 +37,5 @@ export const queryStringProcess = (queryStringObject: StringifiableRecord) => {
 
   return queryString.stringify(queryStringObject);
 };
+
+// eslint-disable-next-line
