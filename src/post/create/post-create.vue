@@ -1,6 +1,6 @@
 <template>
   <div class="post-create">
-    <FileCreate />
+    <FileCreate @change="onChangeFileCreate" />
     <PostTitleField />
     <PostContentField />
     <PostTagField :postId="postId" v-if="postId" />
@@ -172,6 +172,16 @@ export default defineComponent({
         });
       } catch (error) {
         this.pushMessage({ content: error.data.message });
+      }
+    },
+
+    onChangeFileCreate(files) {
+      const file = files[0];
+
+      if (!file) return;
+
+      if (!this.title) {
+        this.setTitle(file.name.split('.')[0]);
       }
     },
   },
