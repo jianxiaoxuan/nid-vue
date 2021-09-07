@@ -9,3 +9,21 @@
   align-items: center;
   justify-content: center;
 }
+
+.file-create-drag-zone::after {
+  display: block;
+  content: ' ';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background: #1792e972;
+  border: 1px solid #1790e9;
+  box-sizing: border-box;
+  z-index: -1;
+  opacity: 0;
+}
+
+.file-create-drag-zone.overlay::after {
+  opacity: 1;
+  z-index: 666;
+}
