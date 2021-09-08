@@ -1,5 +1,6 @@
 <template>
   <div class="file-create">
+    <FileCreateMedia />
     <FileCreateDragZone @change="onChangeDragZone" />
   </div>
 </template>
@@ -8,6 +9,7 @@
 import { defineComponent } from 'vue';
 import { mapGetters, mapMutations, mapActions } from 'vuex';
 import FileCreateDragZone from '@/file/create/components/file-create-drag-zone';
+import FileCreateMedia from '@/file/create/components/file-create-media';
 
 export default defineComponent({
   name: 'FileCreate',
@@ -59,6 +61,7 @@ export default defineComponent({
    * 使用组件
    */
   components: {
+    FileCreateMedia,
     FileCreateDragZone,
   },
 });
