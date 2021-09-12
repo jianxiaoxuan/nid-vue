@@ -11,14 +11,15 @@ export interface File {
 }
 
 export interface FileCreateStoreState {
-  uploadProcess: number;
+  uploadProgress: number;
   previewImage: string;
   selectedFile: File | null;
   loading: boolean;
 }
 
 export interface CreateFileOptions {
-  data?: null;
+  file?: File;
+  postId?: number;
 }
 
 export const fileCreateStoreModule: Module<FileCreateStoreState, RootState> = {
@@ -31,7 +32,7 @@ export const fileCreateStoreModule: Module<FileCreateStoreState, RootState> = {
    * 数据
    */
   state: {
-    uploadProcess: 0,
+    uploadProgress: 0,
     previewImage: '',
     selectedFile: null,
     loading: false,
@@ -41,8 +42,8 @@ export const fileCreateStoreModule: Module<FileCreateStoreState, RootState> = {
    * 获取器
    */
   getters: {
-    uploadProcess(state) {
-      return state.uploadProcess;
+    uploadProgress(state) {
+      return state.uploadProgress;
     },
 
     previewImage(state) {
@@ -56,14 +57,20 @@ export const fileCreateStoreModule: Module<FileCreateStoreState, RootState> = {
     loading(state) {
       return state.loading;
     },
+
+    uploading(state) {
+      return state.uploadProgress !== 0 && state.uploadProgress !== 100
+        ? true
+        : false;
+    },
   },
 
   /**
    * 修改器
    */
   mutations: {
-    setUploadProcess(state, data) {
-      state.uploadProcess = data;
+    setUploadProgress(state, data) {
+      state.uploadProgress = data;
     },
 
     setPreviewImage(state, data) {
@@ -83,12 +90,44 @@ export const fileCreateStoreModule: Module<FileCreateStoreState, RootState> = {
    * 动作
    */
   actions: {
-    async createFile({ commit }, options: CreateFileOptions = {}) {
+    async createFile({ commit, dispatch }, options: CreateFileOptions = {}) {
       commit('setLoading', true);
 
+      const { file, postId } = options;
+
+      const formData = new FormData();
+
+      formData.append('file', file as any);
+
       try {
-        const response = await apiHttpClient.post(`files`);
+        const response = await apiHttpClient.post(
+          `files?post=${postId}`,
+          formData,
+          {
+            onUploadProgress: event => {
+              const uploadProgress = Math.round(
+                (event.loaded * 100) / event.total,
+              );
+
+              if (uploadProgress === 100) {
+                dispatch(
+                  'notification/pushMessage',
+                  { content: '上传成功，开始处理照片...' },
+                  { root: true },
+                );
+              }
+
+              commit('setUploadProgress', uploadProgress);
+            },
+          },
+        );
         commit('setLoading', false);
+
+        dispatch(
+          'notification/pushMessage',
+          { content: '照片处理完成' },
+          { root: true },
+        );
 
         return response;
       } catch (error) {
