@@ -12,6 +12,7 @@
       fileType="image/*"
       :text="fileFieldText"
     />
+    <div class="description">直接把图像文件拖放到这里</div>
   </div>
 </template>
 
@@ -46,7 +47,9 @@ export default defineComponent({
    * 计算属性
    */
   computed: {
-    ...mapGetters({}),
+    ...mapGetters({
+      previewImage: 'file/create/previewImage',
+    }),
 
     fileFieldText() {
       return '选择文件';
@@ -56,7 +59,7 @@ export default defineComponent({
       return [
         'file-create-drag-zone',
         { overlay: this.isOverlay },
-        { active: false },
+        { active: this.previewImage },
       ];
     },
   },

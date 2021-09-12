@@ -1,6 +1,6 @@
 <template>
-  <div class="file-create">
-    <FileCreateMedia />
+  <div :class="fileCreateClasses">
+    <FileCreateMedia v-if="previewImage" />
     <FileCreateDragZone @change="onChangeDragZone" />
   </div>
 </template>
@@ -35,7 +35,13 @@ export default defineComponent({
    * 计算属性
    */
   computed: {
-    ...mapGetters({}),
+    ...mapGetters({
+      previewImage: 'file/create/previewImage',
+    }),
+
+    fileCreateClasses() {
+      return ['file-create', { active: this.previewImage }];
+    },
   },
 
   /**
@@ -49,11 +55,32 @@ export default defineComponent({
    * 组件方法
    */
   methods: {
-    ...mapMutations({}),
+    ...mapMutations({
+      setSelectedFile: 'file/create/setSelectedFile',
+      setPreviewImage: 'file/create/setPreviewImage',
+    }),
+
     ...mapActions({}),
 
     onChangeDragZone(files) {
+      const file = files[0];
+
+      if (file) {
+        this.setSelectedFile(file);
+        this.createImagePreview(file);
+      }
+
       this.$emit('change', files);
+    },
+
+    createImagePreview(file) {
+      const reader = new FileReader();
+
+      reader.readAsDataURL(file);
+
+      reader.onload = event => {
+        this.setPreviewImage(event.target.result);
+      };
     },
   },
 

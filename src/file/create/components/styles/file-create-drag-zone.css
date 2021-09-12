@@ -27,3 +27,27 @@
   opacity: 1;
   z-index: 666;
 }
+
+.file-create-drag-zone > .field {
+  margin-bottom: 16px;
+}
+
+.file-create-drag-zone > .description {
+  font-size: 14px;
+  color: var(--secondary-text-color);
+}
+
+.file-create-drag-zone.active > .field {
+  position: relative;
+  z-index: 2;
+}
+
+.file-create-drag-zone.active > .field > .button {
+  background: #000000d2;
+  border-color: transparent;
+  color: #ffffffd6;
+}
+
+.file-create-drag-zone.active > .description {
+  color: #000;
+}
