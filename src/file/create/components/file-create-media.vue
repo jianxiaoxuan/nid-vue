@@ -48,7 +48,11 @@ export default defineComponent({
   /**
    * 组件方法
    */
-  methods: {},
+  methods: {
+    onLoadimage() {
+      this.loaded = true;
+    },
+  },
 
   /**
    * 使用组件
